@@ -10,7 +10,6 @@ document.getElementById("fpForm").addEventListener("submit", function (e) {
       return;
     }
   
-    // Simulate success
     message.style.color = "green";
     message.textContent = "Password reset link has been sent!";
     alert("Check your email or phone for reset instructions.");
