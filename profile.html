@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Management</title>
     <link rel="stylesheet" href="loginPageStyle.css">
+    <link rel="icon" type="image/png" href="imgs/icon.png">
     <style>
-        /* Additional styles for profile management */
         .profile-container {
             background-color: #ffffff;
-            padding: 30px 40px;
+            padding: 8px 30px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.15);
             width: 100%;
@@ -110,8 +110,6 @@
         .form-actions button.cancel:hover {
             background-color: #c0392b;
         }
-
-        /* Modal styles for avatar cropping */
         .modal {
             display: none;
             position: fixed;
@@ -202,9 +200,9 @@
 <body>
     <div class="profile-container">
         <div class="profile-header">
-            <img src="https://via.placeholder.com/120" alt="Profile Avatar" class="profile-avatar" id="profile-avatar">
-            <h2>Monkey D. Luffy</h2>
-            <p>monkey.luffy@gmail.com</p>
+            <img src="imgs/cr7.png" alt="Profile Avatar" class="profile-avatar" id="profile-avatar">
+            <h2>Cristiano Ronaldo</h2>
+            <p>cr7@gmail.com</p>
         </div>
 
         <div class="tab-container">
@@ -214,40 +212,38 @@
             <div class="tab" data-tab="password">Reset Password</div>
         </div>
 
-        <!-- View Profile Tab -->
         <div class="tab-content active" id="view-tab">
             <div class="profile-section">
                 <h3>Personal Information</h3>
                 <div class="profile-info">
                     <div class="info-item">
                         <label>First Name</label>
-                        <span id="view-first-name">Monkey D.</span>
+                        <span id="view-first-name">Cristiano</span>
                     </div>
                     <div class="info-item">
                         <label>Last Name</label>
-                        <span id="view-last-name">Luffy</span>
+                        <span id="view-last-name">Ronaldo</span>
                     </div>
                     <div class="info-item">
                         <label>Email</label>
-                        <span id="view-email">monkey.luffy@egmail.com</span>
+                        <span id="view-email">cr7@egmail.com</span>
                     </div>
                     <div class="info-item">
                         <label>Phone</label>
-                        <span id="view-phone">65647890</span>
+                        <span id="view-phone">+441028391</span>
                     </div>
                     <div class="info-item">
                         <label>Date of Birth</label>
-                        <span id="view-dob">January 1, 1990</span>
+                        <span id="view-dob">February 5,1970</span>
                     </div>
                     <div class="info-item">
                         <label>Address</label>
-                        <span id="view-address">123 Main St, City, Country</span>
+                        <span id="view-address">Lisbon,Portugal</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Edit Profile Tab -->
         <div class="tab-content" id="edit-tab">
             <div class="profile-section">
                 <h3>Edit Profile</h3>
@@ -255,27 +251,27 @@
                     <div class="profile-info">
                         <div class="input-group">
                             <label for="edit-first-name">First Name</label>
-                            <input type="text" id="edit-first-name" value="Monkey D." required>
+                            <input type="text" id="edit-first-name" value="" required>
                         </div>
                         <div class="input-group">
                             <label for="edit-last-name">Last Name</label>
-                            <input type="text" id="edit-last-name" value="Luffy" required>
+                            <input type="text" id="edit-last-name" value="" required>
                         </div>
                         <div class="input-group">
                             <label for="edit-email">Email</label>
-                            <input type="email" id="edit-email" value="monkey.luffy@gmail.com" required>
+                            <input type="email" id="edit-email" value="" required>
                         </div>
                         <div class="input-group">
                             <label for="edit-phone">Phone</label>
-                            <input type="tel" id="edit-phone" value="(123) 456-7890">
+                            <input type="tel" id="edit-phone" value="">
                         </div>
                         <div class="input-group">
                             <label for="edit-dob">Date of Birth</label>
-                            <input type="date" id="edit-dob" value="1990-01-01">
+                            <input type="date" id="edit-dob" value="">
                         </div>
                         <div class="input-group">
                             <label for="edit-address">Address</label>
-                            <textarea id="edit-address" rows="2">123 Main St, City, Country</textarea>
+                            <textarea id="edit-address" rows="2">""</textarea>
                         </div>
                     </div>
                     <div class="form-actions">
@@ -286,13 +282,12 @@
             </div>
         </div>
 
-        <!-- Change Avatar Tab -->
         <div class="tab-content" id="avatar-tab">
             <div class="profile-section">
                 <h3>Change Avatar</h3>
                 <div style="text-align: center;">
                     <p>Current Avatar:</p>
-                    <img src="https://via.placeholder.com/150" alt="Current Avatar" style="width: 150px; height: 150px; border-radius: 50%; margin: 10px 0;">
+                    <img src="imgs/cr7.png" alt="Current Avatar" style="width: 150px; height: 150px; border-radius: 50%; margin: 10px 0;">
                     <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
                     <button type="button" id="upload-avatar-btn">Upload New Avatar</button>
                     <p class="message" id="avatar-message"></p>
@@ -300,7 +295,6 @@
             </div>
         </div>
 
-        <!-- Reset Password Tab -->
         <div class="tab-content" id="password-tab">
             <div class="profile-section">
                 <h3>Reset Password</h3>
@@ -335,7 +329,6 @@
         </div>
     </div>
 
-    <!-- Avatar Crop Modal -->
     <div class="modal" id="avatar-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -353,21 +346,16 @@
     </div>
 
     <script>
-        // Tab switching functionality
         document.querySelectorAll('.tab').forEach(tab => {
             tab.addEventListener('click', () => {
-                // Remove active class from all tabs and contents
                 document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                // Add active class to clicked tab and corresponding content
                 tab.classList.add('active');
                 const tabId = tab.getAttribute('data-tab');
                 document.getElementById(`${tabId}-tab`).classList.add('active');
             });
         });
 
-        // Toggle password visibility
         document.querySelectorAll('.toggle-password').forEach(toggle => {
             toggle.addEventListener('click', function() {
                 const input = document.querySelector(this.getAttribute('toggle'));
@@ -376,14 +364,11 @@
             });
         });
 
-        // Edit profile form handling
         const editForm = document.getElementById('edit-profile-form');
         const cancelEdit = document.getElementById('cancel-edit');
 
         editForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            // Validate form
             const firstName = document.getElementById('edit-first-name').value.trim();
             const lastName = document.getElementById('edit-last-name').value.trim();
             const email = document.getElementById('edit-email').value.trim();
@@ -398,15 +383,13 @@
                 return;
             }
             
-            // Update view with new values
             document.getElementById('view-first-name').textContent = firstName;
             document.getElementById('view-last-name').textContent = lastName;
             document.getElementById('view-email').textContent = email;
             document.getElementById('view-phone').textContent = document.getElementById('edit-phone').value;
             document.getElementById('view-dob').textContent = formatDate(document.getElementById('edit-dob').value);
             document.getElementById('view-address').textContent = document.getElementById('edit-address').value;
-            
-            // Switch back to view tab
+    
             document.querySelector('.tab[data-tab="view"]').click();
             
             alert('Profile updated successfully!');
@@ -416,7 +399,6 @@
             document.querySelector('.tab[data-tab="view"]').click();
         });
 
-        // Password reset form handling
         const passwordForm = document.getElementById('reset-password-form');
         const passwordMessage = document.getElementById('password-message');
 
@@ -427,7 +409,6 @@
             const newPassword = document.getElementById('new-password').value;
             const confirmPassword = document.getElementById('confirm-password').value;
             
-            // Simple validation
             if (newPassword !== confirmPassword) {
                 passwordMessage.textContent = 'New passwords do not match';
                 return;
@@ -437,21 +418,17 @@
                 passwordMessage.textContent = 'Password must be at least 8 characters';
                 return;
             }
-            
-            // In a real app, you would send this to the server
+
             passwordMessage.textContent = 'Password changed successfully!';
             passwordMessage.style.color = 'green';
             
-            // Reset form
             passwordForm.reset();
             
-            // Clear message after 3 seconds
             setTimeout(() => {
                 passwordMessage.textContent = '';
             }, 3000);
         });
 
-        // Avatar upload and cropping
         const avatarUpload = document.getElementById('avatar-upload');
         const uploadAvatarBtn = document.getElementById('upload-avatar-btn');
         const avatarModal = document.getElementById('avatar-modal');
@@ -473,9 +450,6 @@
                 reader.onload = function(event) {
                     avatarPreview.src = event.target.result;
                     avatarModal.style.display = 'flex';
-                    
-                    // In a real app, you would initialize a cropper library here
-                    // For example: new Cropper(avatarPreview, { aspectRatio: 1 });
                 }
                 
                 reader.readAsDataURL(e.target.files[0]);
@@ -491,8 +465,6 @@
         });
 
         saveAvatar.addEventListener('click', () => {
-            // In a real app, you would crop the image and upload it to the server
-            // For this example, we'll just use the preview image
             profileAvatar.src = avatarPreview.src;
             
             avatarMessage.textContent = 'Avatar updated successfully!';
@@ -500,14 +472,12 @@
             
             avatarModal.style.display = 'none';
             avatarUpload.value = '';
-            
-            // Clear message after 3 seconds
+
             setTimeout(() => {
                 avatarMessage.textContent = '';
             }, 3000);
         });
 
-        // Helper functions
         function validateEmail(email) {
             const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return re.test(email);
