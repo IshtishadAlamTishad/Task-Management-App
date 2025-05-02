@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial,sans-serif;
+  background: linear-gradient(135deg,#00aaff,#0047b3); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.profileBlock {
+  background-color: #ffffff;
+  padding: 10px 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+  text-align: center; 
+}
+
+.profileHeading {
+  margin-bottom: 30px;
+}
+.profilePic {
+  cursor: pointer;
+}
+
+.profileHeading h2 {
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.profilePic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #3498db;
+  margin: 0 auto 5px;
+  display: block;
+  cursor: pointer;
+}
+
+.dpup {
+  display: none;
+}
+
+.profileSec {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.profileSec h3 {
+  margin-top: 0;
+  color: #3498db;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.profileInfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.infos {
+  margin-bottom: 10px;
+}
+
+.infos label {
+  font-weight: bold;
+  color: #555;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.infos input[type="text"],
+.infos input[type="email"],
+.infos input[type="tel"],
+.infos input[type="date"] {
+  display: block;
+  padding: 8px;
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}
+
+.infos input[type="radio"] {
+  margin-right: 2px;
+}
+
+.formButtons {
+  display: flex;
+  justify-content: center; 
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.formButtons button {
+  width: auto;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.formButtons button.cancel {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.formButtons button.cancel:hover {
+  background: linear-gradient(135deg, #c0392b, #e74c3c);
+}
+
+.formButtons button.submit {
+  background: linear-gradient(135deg, #3498db, #2980b9);
+}
+
+.formButtons button.submit:hover {
+  background: linear-gradient(135deg, #2980b9, #3498db);
+}
+
+.genderOps {
+  display: flex;
+  justify-content: space-around;
+  gap: 5px;
+  margin-top: 5px;
+}
+
+.genders {
+  font-size: 14px; 
+  color: #555;
+  gap: 5px;
+}
+
+.genders input[type="radio"] {
+  margin-right: 5px;
+}

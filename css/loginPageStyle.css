@@ -8,7 +8,7 @@ body {
   align-items: center;
 }
   
-.login-container {
+.loginContainer {
   background-color: #ffffff;
   padding: 30px 40px;
   border-radius: 12px;
@@ -23,7 +23,7 @@ form h2 {
   color: #333;
 }
 
-.input-group {
+.inGrp {
   margin-bottom: 15px;
 }
 

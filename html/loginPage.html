@@ -2,21 +2,22 @@
 <html>
     <head>
         <title>Login Page</title>
-        <link rel="stylesheet" href="loginPageStyle.css">
+        <link rel="stylesheet" href="/css/loginPageStyle.css">
         <link rel="icon" type="image/png" href="imgs/icon.png">
     </head>
 
     <body>
-    <div class="login-container">
-        <form id="loginForm" method = "post" action = "loginValidation.php">
+    <div class="loginContainer">
+        <form id="loginForm" method = "post">
+        <center><image src="/imgs/icon.png" width="70px" alt="logo"></image></center>
         <h2 id="loginTitleTxt">Login</h2>
 
-        <div class="input-group">
+        <div class="inGrp">
             <label for="email">Email</label>
             <input type="email" id="email" name = "email" value = "" required />
         </div>
 
-        <div class="input-group">
+        <div class="inGrp">
             <label for="password">Password</label>
             <div class="password-wrapper">
 
@@ -37,7 +38,7 @@
         </form>
     </div>
 
-    <script src="login.js"></script> 
+    <script src="/js/login.js"></script> 
     </body>
 
 </html>
