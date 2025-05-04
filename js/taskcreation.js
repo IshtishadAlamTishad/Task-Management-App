@@ -16,8 +16,13 @@ quickInput.addEventListener('keypress', function (event) {
 
 function quickAddTask() {
   const name = quickInput.value.trim();
+  const fileInput = document.getElementById('quickTaskFile');
+
   if (name) {
-    tasks.push({ name, category: '' });
+    tasks.push({
+      name,
+      category: ''
+    });
     renderTasks();
     showToast(`Task "${name}" added successfully!`);
     quickInput.value = '';
@@ -37,13 +42,22 @@ function submitDetailedForm() {
   const desc = document.getElementById('taskDesc').value.trim();
   const label = document.getElementById('taskLabel').value.trim();
   const category = document.getElementById('taskCategory').value;
+  const fileInput = document.getElementById('detailedTaskFile');
+  const file = fileInput.files[0];
 
   if (!name) {
     showToast('Task name is required!', true);
     return false;
   }
 
-  tasks.push({ name, desc, label, category });
+  tasks.push({
+    name,
+    desc,
+    label,
+    category,
+    file: file ? { name: file.name, size: file.size } : null
+  });
+
   renderTasks();
   showToast(`Detailed Task "${name}" added`);
   document.getElementById('taskForm').reset();
@@ -102,6 +116,14 @@ function renderTasks() {
         div.draggable = true;
         div.dataset.index = index;
         div.ondragstart = handleDrag;
+
+        if (task.file) {
+          const fileDiv = document.createElement('div');
+          fileDiv.className = 'attachment';
+          fileDiv.textContent = `📎 ${task.file.name} (${Math.ceil(task.file.size / 25)} MB)`;
+          div.appendChild(fileDiv);
+        }
+
         container.appendChild(div);
       });
 

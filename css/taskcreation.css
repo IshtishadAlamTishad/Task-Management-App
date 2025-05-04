@@ -159,3 +159,13 @@ form button:hover {
   margin-bottom: 10px;
   cursor: grab;
 }
+
+.file-input {
+  font-size: 14px;
+}
+
+.attachment {
+  font-size: 13px;
+  color: #666;
+  margin-top: 5px;
+}
