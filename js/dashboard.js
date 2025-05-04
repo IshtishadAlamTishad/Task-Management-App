@@ -3,14 +3,17 @@ function viewDetails(section) {
   }
   
   function quickAddTask() {
-    alert('Opening Add Task page...');
+    console.log('Opening Add Task page...');
   }
   
   function viewAnalytics() {
-    alert('Opening Analytics Overview...');
+    console.log('Opening Analytics Overview...');
   }
   
   function viewAllTasks() {
-    alert('Opening All Tasks List...');
+    console.log('Opening All Tasks List...');
   }
   
+  function viewCalendar() {
+    console.log("Navigating to calendar view...");
+  }

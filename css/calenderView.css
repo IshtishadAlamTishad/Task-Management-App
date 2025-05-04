@@ -1,0 +1,90 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #2980b9, #6dd5fa);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .calendarContainer {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    width: 100%;
+    max-width: 900px;
+  }
+  
+  .calendarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .calendarHeader h2 {
+    color: #333;
+  }
+  
+  .calendarTabs button {
+    padding: 8px 16px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .calendarTabs button:hover {
+    background-color: #2980b9;
+  }
+  
+  .calendarGrid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+  }
+  
+  .calendarCell {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 80px;
+    position: relative;
+  }
+  
+  .task {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    margin-top: 5px;
+    cursor: move;
+    user-select: none;
+  }
+  
+  .task[data-category="work"] {
+    background-color: #e67e22;
+  }
+  
+  .task[data-category="personal"] {
+    background-color: #27ae60;
+  }
+  
+  .printButton {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .printButton:hover {
+    background-color: #2980b9;
+  }
+  
