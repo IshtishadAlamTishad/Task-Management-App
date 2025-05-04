@@ -1,7 +1,9 @@
 # Task Management App
 
 ### Overview
-    A simple web application designed to help users manage their tasks efficiently. This project includes features like task creation, validation, and management, built using HTML, CSS, JavaScript, and PHP.
+    A simple web application designed to help users manage their tasks efficiently. 
+    This project includes features like task creation, validation and management 
+    built using HTML, CSS, JavaScript and PHP.
 
 ### Features
     Task Creation: Users can add new tasks with title, description, and due date.
@@ -68,7 +70,7 @@
 
 ### Contributors
     Mohammed Istishad Alam Tishad,22-46130-1,CSE,FST,AIUB
-    Rakibul Riyel,22-461-1,CSE,FST,AIUB
+    Rakibul Riyel,22-46138-1,CSE,FST,AIUB
 
 ### Fork the repository.
 
