@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Create Task</title>
+  <link rel="stylesheet" href="taskcreation.css">
+</head>
+<body>
+  <div class="task-container">
+    <header>
+      <h1>Create a Task</h1>
+    </header>
+
+    <div class="quick-add">
+      <input type="text" id="quickTaskInput" placeholder="Type task name...">
+      <button onclick="quickAddTask()">Quick Add</button>
+      <button onclick="toggleAdvanced()">+</button>
+    </div>
+
+    <div class="advanced-form" id="advancedForm" style="display: none;">
+      <h2>Detailed Task Form</h2>
+      <form id="taskForm" onsubmit="return submitDetailedForm()">
+        <input type="text" id="taskName" placeholder="Task Name" required>
+        <textarea id="taskDesc" placeholder="Task Description"></textarea>
+        <input type="text" id="taskLabel" placeholder="Labels (comma separated)">
+        <button type="submit">Add Task</button>
+      </form>
+    </div>
+
+    <div id="toast" class="toast">Task added successfully!</div>
+  </div>
+
+  <script src="taskcreation.js"></script>
+</body>
+</html>

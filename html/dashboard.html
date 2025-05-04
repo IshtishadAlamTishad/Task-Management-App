@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Management Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <header>
+      <h1>Dashboard</h1>
+      <nav>
+        <a href="profile.html">
+        <button onclick="Profile()">Profile</button>
+        </a>
+        <a href="loginPage.html">
+        <button onclick="logout()">Logout</button>
+        </a>
+      </nav>
+    </header>
+
+    <section class="summary-widgets">
+      <div class="widget" onclick="viewDetails('tasks')">
+        <h2>24</h2>
+        <p>Tasks</p>
+      </div>
+      <div class="widget" onclick="viewDetails('completed')">
+        <h2>18</h2>
+        <p>Completed</p>
+      </div>
+      <div class="widget" onclick="viewDetails('pending')">
+        <h2>6</h2>
+        <p>Pending</p>
+      </div>
+      <div class="widget" onclick="viewDetails('overdue')">
+        <h2>2</h2>
+        <p>Overdue</p>
+      </div>
+    </section>
+
+    <section class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="quick-buttons">
+        <a href="taskcreation.html">
+        <button onclick="quickAddTask()">Add Task</button>
+        </a>
+        <button onclick="viewAnalytics()">View Analytics</button>
+        <button onclick="viewAllTasks()">View All Tasks</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="dashboard.css"></script>
+</body>
+</html>

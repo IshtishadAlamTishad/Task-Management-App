@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <link rel="stylesheet" href="notificationsStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Task Management App</h1>
+        <div class="header-icons">
+            <div class="notification-bell" id="notificationBell">
+                <i class="fas fa-bell"></i>
+                <span class="badge" id="unreadCount">2</span>
+            </div>
+            <button class="settings-btn" id="settingsButton" title="Notification settings">
+                <i class="fas fa-sliders-h"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="notification-center" id="notificationCenter">
+            <h2>Notifications</h2>
+            <div class="notification-list">
+                <div class="notification-item unread">
+                    <div class="notification-content">
+                        <h3>New message</h3>
+                        <p>You have a new message from John</p>
+                        <span class="notification-time">10 min ago</span>
+                    </div>
+                    <button class="mark-read">✓</button>
+                </div>
+                <div class="notification-item">
+                    <div class="notification-content">
+                        <h3>System update</h3>
+                        <p>New version available</p>
+                        <span class="notification-time">1 day ago</span>
+                    </div>
+                    <button class="mark-read">✓</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification-settings" id="notificationSettings">
+            <div class="settings-header">
+                <button class="back-btn" id="backButton">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h2>Notification Settings</h2>
+            </div>
+            <form id="settingsForm">
+                <div class="setting-group">
+                    <h3>Notification Types</h3>
+                    <div class="toggle-switch">
+                        <label>
+                            <input type="checkbox" name="emailNotifications" checked>
+                            <span class="slider"></span>
+                            <span class="label-text">Email</span>
+                        </label>
+                    </div>
+                    <div class="toggle-switch">
+                        <label>
+                            <input type="checkbox" name="pushNotifications" checked>
+                            <span class="slider"></span>
+                            <span class="label-text">Push</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" class="save-btn">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="notificationsScript.js"></script>
+</body>
+</html>
