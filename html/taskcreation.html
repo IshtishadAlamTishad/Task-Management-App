@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Create Task</title>
-  <link rel="stylesheet" href="taskcreation.css">
+  <link rel="stylesheet" href="/css/taskcreation.css" />
 </head>
 <body>
   <div class="task-container">
@@ -13,24 +13,42 @@
     </header>
 
     <div class="quick-add">
-      <input type="text" id="quickTaskInput" placeholder="Type task name...">
+      <input type="text" id="quickTaskInput" placeholder="Type task name..." />
       <button onclick="quickAddTask()">Quick Add</button>
       <button onclick="toggleAdvanced()">+</button>
+      <button onclick="toggleCategoryManager()">Categories</button>
     </div>
 
-    <div class="advanced-form" id="advancedForm" style="display: none;">
+    <div class="advanced-form" id="advancedForm">
       <h2>Detailed Task Form</h2>
       <form id="taskForm" onsubmit="return submitDetailedForm()">
-        <input type="text" id="taskName" placeholder="Task Name" required>
+        <input type="text" id="taskName" placeholder="Task Name" required />
         <textarea id="taskDesc" placeholder="Task Description"></textarea>
-        <input type="text" id="taskLabel" placeholder="Labels (comma separated)">
+        <input type="text" id="taskLabel" placeholder="Labels (comma separated)" />
+        <select id="taskCategory">
+          <option value="">Select Category</option>
+          <option value="development">Development</option>
+          <option value="design">Design</option>
+          <option value="marketing">Marketing</option>
+        </select>
         <button type="submit">Add Task</button>
       </form>
     </div>
 
-    <div id="toast" class="toast">Task added successfully!</div>
+    <div class="category-manager" id="categoryManager">
+      <h2>Category Manager</h2>
+      <div class="quick-add">
+        <input type="text" id="newCategoryInput" placeholder="New category name..." />
+        <button onclick="addCategory()">Add</button>
+      </div>
+      <ul id="categoryList"></ul>
+    </div>
+
+    <div class="task-lists" id="taskLists"></div>
+
+    <div id="toast" class="toast">Toast message here</div>
   </div>
 
-  <script src="taskcreation.js"></script>
+  <script src="/js/taskcreation.js"></script>
 </body>
 </html>
