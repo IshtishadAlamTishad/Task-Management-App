@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+    <head>
+        <title>Search & Filter System</title>
+        <link rel="stylesheet" href="/css/searchFilterStyle.css" />
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Search & Filter</h1>
+
+            <div class="controls">
+            <input type="text" id="searchInput" placeholder="Search by keyword..." />
+            <select id="categoryFilter">
+                <option value="all">All Categories</option>
+                <option value="development">Development</option>
+                <option value="design">Design</option>
+                <option value="marketing">Marketing</option>
+            </select>
+            <button id="searchButton">Search</button>
+            </div>
+              
+            <div id="resultsList" class="results-list"></div>
+        </div>
+
+        <script src="/js/searchFilter.js"></script>
+    </body>
+</html>

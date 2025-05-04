@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #2980b9, #6dd5fa);
+    padding: 40px;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  #taskList {
+    margin-top: 20px;
+  }
+  
+  .task-item, .subtask-item {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+  }
+  
+  .task-item input[type="checkbox"], .subtask-item input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  #completionBarContainer {
+    width: 100%;
+    background-color: #ddd;
+    height: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  #completionBar {
+    height: 100%;
+    width: 0;
+    background-color: #28a745;
+    border-radius: 10px;
+  }
+  
+  #progressDashboard {
+    margin-top: 30px;
+    text-align: center;
+  }
+  
+  #taskCompletionStats {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background: #0056b3;
+  }
+  
+  .subtask-input {
+    margin-left: 20px;
+  }
+  
+  .add-subtask-btn {
+    margin-left: 10px;
+    font-size: 14px;
+    background-color: #17a2b8;
+  }
+  
+  .add-subtask-btn:hover {
+    background-color: #138496;
+  }
+  

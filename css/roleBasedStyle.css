@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: linear-gradient(135deg, #2980b9, #6dd5fa);
+  }
+  
+  header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .role-assignment {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  select {
+    padding: 8px 12px;
+    font-size: 16px;
+  }
+  
+  nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+  }
+  
+  nav li {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #2d9cdb;
+    color: white;
+    border-radius: 5px;
+  }
+  
+  section {
+    margin: 30px auto;
+    padding: 20px;
+    max-width: 600px;
+    border-radius: 10px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: none;
+  }
+  
+  .visible {
+    display: block !important;
+  }
+  
