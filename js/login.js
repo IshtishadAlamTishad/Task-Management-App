@@ -21,11 +21,11 @@ document.getElementById("togglePassword").addEventListener("click",function () {
       return;
     }
   
-    if (email === "tishadalam86@gmail.com" && password === "abcd1") {
+    if (email === "tishadalam86@gmail.com" && password === "abcd1" || email === "rakibulriyel1171@gmail.com" && password === "abcd2") {
       message.style.color = "green";
       message.textContent = "Login successful!";
       alert("Login Successful!");
-      window.location.href = "profile.html";
+      window.location.href = "dashboard.html";
     } else {
       message.style.color = "red";
       message.textContent = "Invalid email or password.";
