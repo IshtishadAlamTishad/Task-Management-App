@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Index | TM</title>
+        <link rel="icon" type="image/png" href="../../imgs/icon.png">
+        
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                background: linear-gradient(rgb(64, 20, 160));
+                font-family: 'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+            }
+
+            .container {
+                text-align: center;
+                background: linear-gradient(rgb(4, 143, 235));
+                padding: 50px 30px;
+                border-radius: 15px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+                backdrop-filter: blur(8px);
+            }
+
+            h1 {
+                font-size: 3rem;
+                margin-bottom: 15px;
+            }
+
+            .redirect-msg {
+                font-size: 1rem;
+                color: #e0e0e0;
+            }
+
+            .branding {
+                font-size: 0.9rem;
+                color: #c2e9fb;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <i><h1>Task Management System</h1></i>
+            <p class="redirect-msg">Preparing your experience...Redirecting to login</p>
+            <div class="branding">Project by Tishad and Riyel © 2025</div>
+        </div>
+
+        <script>
+            setTimeout(() => {
+                window.location.href = "view/html/loginPage.html";
+            }, 3000); 
+        </script>
+    </body>
+</html>

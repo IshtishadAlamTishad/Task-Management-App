@@ -6,11 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const notificationSettings = document.getElementById('notificationSettings');
     const unreadCount = document.getElementById('unreadCount');
     
-    // Show notification center by default
     notificationCenter.style.display = 'block';
     notificationSettings.style.display = 'none';
     
-    // Toggle between views
     notificationBell.addEventListener('click', function() {
         notificationCenter.style.display = 'block';
         notificationSettings.style.display = 'none';
@@ -26,7 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
         notificationSettings.style.display = 'none';
     });
     
-    // Mark as read functionality
     document.querySelectorAll('.mark-read').forEach(button => {
         button.addEventListener('click', function() {
             const notification = this.closest('.notification-item');
@@ -37,19 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Update unread count
     function updateUnreadCount() {
         const count = document.querySelectorAll('.notification-item.unread').length;
         unreadCount.textContent = count;
         unreadCount.style.display = count > 0 ? 'flex' : 'none';
     }
     
-    // Save settings
     document.getElementById('settingsForm').addEventListener('submit', function(e) {
         e.preventDefault();
         alert('Settings saved!');
     });
     
-    // Initialize
     updateUnreadCount();
 });
