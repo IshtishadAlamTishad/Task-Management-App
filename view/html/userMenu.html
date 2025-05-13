@@ -1,48 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu | TM</title>
-  <link rel="stylesheet" href="../../asset/css/userMenuStyle.css" />
-</head>
-<body>
+<html>
 
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Menu | TM</title>
+    <link rel="stylesheet" href="../../asset/css/userMenuStyle.css" />
+  </head>
+  
+  <body>
 
-  <header class="top-bar">
-    <div class="user-header-info">
-      <img src="https://via.placeholder.com/60" alt="Profile" class="top-profile-img">
-      <h2>John Doe</h2>
+    <header class="top-bar">
+      <div class="user-header-info">
+        <img src="../../imgs/cr7.png" type="png" alt="ProfilePic" class="profileImg">
+        <h2>Cristiano Ronaldo</h2>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </header>
+
+    <div class="layout">
+
+      <aside class="sidebar" id="sidebar">
+        <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+        
+        <nav class="nav-buttons">
+          <button onclick="showContent('dashboard.html')">Dashboard</button>
+          <button onclick="showContent('profile.html')">Profile</button>
+          <button onclick="showContent('taskcreation.html')">Create Task</button>
+          <button onclick="showContent('progressTrackPage.html')">Progress Tracker</button>
+          <button onclick="showContent('searchFilterPage.html')">Search & Filter</button>
+          <button onclick="showContent('activityHistoryPage.html')">Activity History</button>
+          <button onclick="showContent('subTaskPage.html')">Subtask</button>
+          <button onclick="showContent('notifications.html')">Notifications</button>
+          <button onclick="showContent('roleBasePage.html')">Role Base</button>
+          <button onclick="showContent('dueDatePage.html')">Due Dates</button>
+          <button onclick="showContent('calenderView.html')">Calendar View</button>
+          <button onclick="showContent('forgotPasswordPage.html')">Change Password</button>
+          <button onclick="showContent('contactUsPage.html')">Contact Us</button>
+        
+        </nav>
+      </aside>
+
+      <main class="main-content">
+        <iframe id="contentFrame" src="dashboard.html"></iframe>
+      </main>
+    
     </div>
-    <button class="logout-btn" onclick="logout()">Logout</button>
-  </header>
 
-  <div class="layout">
+    <script src="../../asset/js/userMenu.js"></script>
+  
+  </body>
 
-    <aside class="sidebar" id="sidebar">
-      <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-      <nav class="nav-buttons">
-        <button onclick="showContent('dashboard.html')">Dashboard</button>
-        <button onclick="showContent('profile.html')">Profile</button>
-        <button onclick="showContent('taskcreation.html')">Create Task</button>
-        <button onclick="showContent('progressTrackPage.html')">Progress Tracker</button>
-        <button onclick="showContent('searchFilterPage.html')">Search & Filter</button>
-        <button onclick="showContent('activityHistoryPage.html')">Activity History</button>
-        <button onclick="showContent('forgotPasswordPage.html')">Change Password</button>
-        <button onclick="showContent('contactUsPage.html')">Contact Us</button>
-        <button onclick="showContent('subTaskPage.html')">Subtask</button>
-        <button onclick="showContent('notifications.html')">Notifications</button>
-        <button onclick="showContent('roleBasePage.html')">Role Based</button>
-        <button onclick="showContent('dueDatePage.html')">Due Dates</button>
-        <button onclick="showContent('calenderView.html')">Calendar View</button>
-      </nav>
-    </aside>
-
-    <main class="main-content">
-      <iframe id="contentFrame" src="dashboard.html"></iframe>
-    </main>
-  </div>
-
-  <script src="../../asset/js/userMenu.js"></script>
-</body>
 </html>

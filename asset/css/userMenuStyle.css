@@ -30,7 +30,7 @@ body {
   gap: 15px;
 }
 
-.top-profile-img {
+.profileImg {
   width: 55px;
   height: 55px;
   border-radius: 50%;
@@ -42,7 +42,7 @@ body {
   position: absolute;
   right: 20px;
   top: 15px;
-  background-color: #e74c3c;
+  background : linear-gradient(rgb(227, 69, 69));
   color: #fff;
   padding: 10px 18px;
   border: none;
