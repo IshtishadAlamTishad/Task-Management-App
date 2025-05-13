@@ -22,7 +22,7 @@ upload.addEventListener('change', function(event) {
 
 
 submitBtn.addEventListener('click', () => {
-    window.location.href = "userPanel.html";
+    window.location.href = "userMenu.html";
 });
 
 cancelBtn.addEventListener('click', () => {
