@@ -10,13 +10,10 @@
 <body>
   <div class="dashboard-container">
     <header>
-      <h1>Dashboard</h1>
+      <center><h1>Dashboard</h1></center>
       <nav>
         <a href="profile.html">
         <button onclick="Profile()">Profile</button>
-        </a>
-        <a href="loginPage.html">
-        <button onclick="logout()">Logout</button>
         </a>
       </nav>
     </header>
@@ -44,10 +41,15 @@
       <h2>Quick Actions</h2>
       <div class="quick-buttons">
         <a href="../html/taskcreation.html">
-        <button onclick="quickAddTask()">Add Task</button>
+          <button onclick="quickAddTask()">Add Task</button>
         </a>
-        <button onclick="viewAnalytics()">View Analytics</button>
-        <button onclick="viewAllTasks()">View All Tasks</button>
+        <a href="../html/progressTrackPage.html">
+          <button onclick="viewAnalytics()">View Analytics</button>
+        </a>
+
+        <a href="../html/activityHistoryPage.html">
+          <button onclick="viewAllTasks()">View All Tasks</button>
+        </a>
         <a href="../html/calenderView.html">
           <button onclick="viewCalendar()">Calendar View</button>
         </a>

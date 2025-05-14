@@ -7,9 +7,10 @@ function viewDetails(section) {
   }
   
   function viewAnalytics() {
-    console.log('Opening Analytics Overview...');
+    window.location.href = "../../view/html/progressTrack.html"; 
   }
-  
+
+
   function viewAllTasks() {
     console.log('Opening All Tasks List...');
   }
