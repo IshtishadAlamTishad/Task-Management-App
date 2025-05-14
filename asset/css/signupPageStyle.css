@@ -5,8 +5,8 @@
 }
 
 body {
-  font-family: Arial,sans-serif;
-  background: linear-gradient(135deg,#00aaff,#0047b3); 
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, rgb(0, 170, 255), rgb(0, 71, 179));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,24 +15,28 @@ body {
 }
 
 .profileBlock {
-  background-color: #ffffff;
-  padding: 10px 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   width: 100%;
-  max-width: 600px;
-  text-align: center; 
+  max-width: 700px;
+  text-align: center;
+  height: auto;
+  max-height: 800px;
+  overflow-y: auto;
 }
 
 .profileHeading {
   margin-bottom: 30px;
 }
+
 .profilePic {
   cursor: pointer;
 }
 
 .profileHeading h2 {
-  color: #333;
+  color: rgb(51, 51, 51);
   margin-bottom: 30px;
 }
 
@@ -41,7 +45,7 @@ body {
   height: 120px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #3498db;
+  border: 3px solid rgb(52, 152, 219);
   margin: 0 auto 5px;
   display: block;
   cursor: pointer;
@@ -52,7 +56,7 @@ body {
 }
 
 .profileSec {
-  background-color: #f9f9f9;
+  background-color: rgb(249, 249, 249);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
@@ -60,25 +64,27 @@ body {
 
 .profileSec h3 {
   margin-top: 0;
-  color: #3498db;
-  border-bottom: 1px solid #eee;
+  color: rgb(52, 152, 219);
+  border-bottom: 1px solid rgb(238, 238, 238);
   padding-bottom: 10px;
   margin-bottom: 15px;
 }
 
 .profileInfo {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
+  display: flex;
+  gap: 15px; 
+  flex-wrap: wrap; 
+  justify-content: space-between;
 }
 
 .infos {
   margin-bottom: 10px;
+  flex: 1 1 30%; 
 }
 
 .infos label {
   font-weight: bold;
-  color: #555;
+  color: rgb(85, 85, 85);
   display: block;
   margin-bottom: 5px;
 }
@@ -86,12 +92,18 @@ body {
 .infos input[type="text"],
 .infos input[type="email"],
 .infos input[type="tel"],
-.infos input[type="date"] {
+.infos input[type="date"],
+.infos input[type="password"] {
   display: block;
-  padding: 8px;
-  background-color: #fff;
+  padding: 10px;
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
-  border: 1px solid #eee;
+  border: 1px solid rgb(238, 238, 238);
+  width: 100%;
+}
+
+.infos input[type="password"] {
+  padding: 12px;
 }
 
 .infos input[type="radio"] {
@@ -100,7 +112,7 @@ body {
 
 .formButtons {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   gap: 15px;
   margin-top: 15px;
 }
@@ -111,25 +123,25 @@ body {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  color: white;
+  color: rgb(255, 255, 255);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .formButtons button.cancel {
-  background: linear-gradient(135deg, #e74c3c, #c0392b);
+  background: linear-gradient(135deg, rgb(231, 76, 60), rgb(192, 57, 43));
 }
 
 .formButtons button.cancel:hover {
-  background: linear-gradient(135deg, #c0392b, #e74c3c);
+  background: linear-gradient(135deg, rgb(192, 57, 43), rgb(231, 76, 60));
 }
 
 .formButtons button.submit {
-  background: linear-gradient(135deg, #3498db, #2980b9);
+  background: linear-gradient(135deg, rgb(52, 152, 219), rgb(41, 128, 185));
 }
 
 .formButtons button.submit:hover {
-  background: linear-gradient(135deg, #2980b9, #3498db);
+  background: linear-gradient(135deg, rgb(41, 128, 185), rgb(52, 152, 219));
 }
 
 .genderOps {
@@ -140,11 +152,30 @@ body {
 }
 
 .genders {
-  font-size: 14px; 
-  color: #555;
+  font-size: 14px;
+  color: rgb(85, 85, 85);
   gap: 5px;
 }
 
 .genders input[type="radio"] {
   margin-right: 5px;
+}
+
+.password-strength {
+  margin-top: 5px;
+  font-size: 12px;
+  color: rgb(85, 85, 85);
+  text-align: left;
+}
+
+.password-strength.weak {
+  color: rgb(231, 76, 60);
+}
+
+.password-strength.medium {
+  color: rgb(243, 156, 18);
+}
+
+.password-strength.strong {
+  color: rgb(46, 204, 113);
 }

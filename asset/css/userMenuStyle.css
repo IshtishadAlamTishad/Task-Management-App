@@ -42,7 +42,7 @@ body {
   position: absolute;
   right: 20px;
   top: 15px;
-  background : linear-gradient(rgb(227, 69, 69));
+  background-color: #e74c3c;
   color: #fff;
   padding: 10px 18px;
   border: none;
