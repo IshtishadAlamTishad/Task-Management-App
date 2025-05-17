@@ -1,21 +1,17 @@
 <?php
+session_start();
+require_once('../model/db.php');
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $db_server = "localhost";
-    $db_user = "root";
-    $db_password = "";
-    $db_name = "TaskManagementDatabase";
-
-    $conn = mysqli_connect($db_server, $db_user, $db_password, $db_name);
-
+    $conn = getConnection();
     if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+        die("Database connection failed!");
     }
-    $conn = mysqli_connect($db_server, $db_user, $db_password, $db_name);
 
     $first = mysqli_real_escape_string($conn, $_POST['firstname']);
     $last = mysqli_real_escape_string($conn, $_POST['lastname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn,$_POST['password']);
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // hashed
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $dob = mysqli_real_escape_string($conn, $_POST['dob']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
@@ -30,27 +26,30 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $fileName = time() . "_" . basename($_FILES["profile_image"]["name"]);
         $targetFilePath = $targetDir . $fileName;
         $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
-        $allowed = ["jpg", "jpeg", "png", "gif"];
+        $allowed = ["jpg", "jpeg", "png"];
 
         if (in_array($imageFileType, $allowed)) {
             if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
-                $relativePath = "uploads/" . $fileName;
+                $imagePath = "imgs/" . $fileName;
 
-                $sql = "INSERT INTO userinfo (firstname,lastname,email,password,phone,dob,gender,address,selfImage)
-                    VALUES ('$first','$last','$email','$password','$phone','$dob','$gender','$address','$imagePath')";
+                $sql = "INSERT INTO userinfo (firstname, lastname, email, password, phone, dob, gender, address, selfImage) 
+                        VALUES ('$first', '$last', '$email', '$password', '$phone', '$dob', '$gender', '$address', '$imagePath')";
+
                 if (mysqli_query($conn, $sql)) {
-                    echo "<script>alert('Saved to database successfully!'); window.location.href='../view/html/loginPage.html';</script>";
+                    $_SESSION['success'] = "Registration successful. Please log in.";
+                    header("Location: ../view/html/loginPage.html");
+                    exit;
                 } else {
                     echo "Database error: " . mysqli_error($conn);
                 }
             } else {
-                echo "<script>alert('Submit failed'); </script>";
+                echo "<script>alert('Image upload failed.');</script>";
             }
         } else {
-            echo "<script>alert('Invalid image type. Only JPG, PNG, JPEG, and GIF are allowed');</script>";
+            echo "<script>alert('Invalid image type. Only JPG, PNG & JPEG allowed!');</script>";
         }
     } else {
-        echo "<script>alert('No image file selected or upload error.');</script>";
+        echo "<script>alert('No image selected or upload error!');</script>";
     }
 
     mysqli_close($conn);

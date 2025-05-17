@@ -2,7 +2,7 @@ const upload = document.getElementById('uploads');
 const img = document.getElementById('imgs');
 const submitBtn = document.querySelector('.submit');
 const cancelBtn = document.querySelector('.cancel');
-const errorElement = document.getElementById('error');
+const er = document.getElementById('msg');
 
 document.getElementById('upTxt').innerHTML = "SignUp";
 
@@ -36,41 +36,51 @@ submitBtn.addEventListener('click', (e) => {
     const profileImage = document.getElementById('uploads').files.length;
 
     if(!firstname || !lastname || !email || !phone || !dob || !address || !gender || !password || !cPass) {
-        errorElement.innerHTML = 'All fields are required.';
+        er.innerHTML = 'All fields are required.';
+        er.style.color = "red";
         e.preventDefault();
         return;
-    }
-    if(password.length <8 ) {
-        errorElement.innerHTML = "Weak Password";
+    }else if(password.length <8 ) {
+        er.innerHTML = "Weak Password";
+        er.style.color = "red";
         e.preventDefault();
         return;
-    }
-    if(password !== cPass) {
-        errorElement.innerHTML = "Password didn't matched";
-        e.preventDefault();
-        return;
-    }
-    if(email.indexOf('@') === -1) {
-        errorElement.innerHTML = "Please enter a valid email address";
-        e.preventDefault();
-        return;
-    }
-    if(isNaN(phone) || phone.length < 10) {
-        errorElement.innerHTML = "Please enter a valid phone number";
-        e.preventDefault();
-        return;
-    }
-    if(!gender) {
-        errorElement.innerHTML = "Please select your gender.";
-        e.preventDefault();
-        return;
-    }
-    if(profileImage === 0) {
-        alert("Please upload a profile image.");
-        return;
-    }
 
-    document.querySelector('form').submit();  
+    }else if(password !== cPass) {
+        er.innerHTML = "Password didn't matched";
+        er.style.color = "red";
+        e.preventDefault();
+        return;
+    }
+    else if(email.indexOf('@') === -1) {
+        er.innerHTML = "Please enter a valid email address";
+        er.style.color = "red";
+        e.preventDefault();
+        return;
+    } else if(isNaN(phone) || phone.length < 10) {
+        er.innerHTML = "Please enter a valid phone number";
+        er.style.color = "red";
+        e.preventDefault();
+        return;
+    }else if(!gender) {
+        er.innerHTML = "Please select your gender.";
+        er.style.color = "red";
+        e.preventDefault();
+        return;
+    } else if(profileImage === 0) {
+        er.innerHtml="Please upload a profile image.";
+        er.style.color = "red";
+        return;
+    } else {
+        er.innerHTML = "All validations passed. Submitting form...";
+        er.style.color = "green";
+
+        setTimeout(() => {
+            document.querySelector('form').submit();
+        }, 800);
+    }
+    
+    
 });
 
 cancelBtn.addEventListener('click', () => {

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Signup Page</title>
+        <title>Signup | TM</title>
         <link rel="stylesheet" href="../../asset/css/signupPageStyle.css">
-        <link rel="icon" type="image/png" href="../../imgs/icon.png">
+        <link rel="icon" type="image/png" href="../../asset/imgs/icon.png">
     </head>
 
     <body>
-        <form method="post" action="../../controller/signupController.php" enctype="multipart/form-data">
+        <form method="post" action="../../controller/signupCheck.php" enctype="multipart/form-data">
             
             <div class="profileBlock">
                 <div class="profileHeading">
@@ -15,7 +15,7 @@
                     <i><h2 id="upTxt">Sign Up</h2></i>
                     
                     <input type="file" id="uploads" class="dpup" accept="image/*" name="profile_image" required>
-                    <img id="imgs" src="/imgs/defaultImg.png" alt="Profile Img" class="profilePic">
+                    <img id="imgs" src="../../asset/imgs/defaultImg.png" alt="Profile Img" class="profilePic">
                 </div>
 
                 <div class="profileSec">
@@ -71,7 +71,9 @@
                                 </label>
                             </div>
                         </div>
+                        
                     </div>
+                    <p id="msg"></p>
                 </div>
 
                 <div class="formButtons">
@@ -81,7 +83,7 @@
             </div>
             
         </form>
-        <p id="msg" style="color:green;"></p>
+        
         <script src="../../asset/js/signup.js"></script>
     </body>
 </html>

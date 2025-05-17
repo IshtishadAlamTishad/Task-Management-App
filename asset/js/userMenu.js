@@ -3,8 +3,9 @@ function showContent(page) {
 }
 
 function logout() {
-  alert("Logging out!");
-  window.location.href = "loginPage.html";
+  if(confirm("Are you sure you want to logout?")) {
+    window.location.href = "../../controller/logout.php";
+  }
 }
 
 function toggleSidebar() {
