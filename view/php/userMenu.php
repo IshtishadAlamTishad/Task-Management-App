@@ -44,7 +44,7 @@
       </aside>
 
       <main class="main-content">
-        <iframe id="contentFrame" src="dashboard.html"></iframe>
+        <iframe id="contentFrame" src="../html/dashboard.html"></iframe>
       </main>
     
     </div>
