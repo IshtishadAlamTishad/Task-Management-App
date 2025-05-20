@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (isset($_FILES["profile_image"]) && $_FILES["profile_image"]["error"] === UPLOAD_ERR_OK) {
         $targetDir = "../asset/upload/profilePic/";
         if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0755, true);
+            mkdir($targetDir, 0777, true);
         }
 
         $fileName = time() . "_" . basename($_FILES["profile_image"]["name"]);
@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
         $allowed = ["jpg", "jpeg", "png"];
 
-        if (in_array($imageFileType, $allowed)) {
+        if (in_array($imageFileType,$allowed)) {
             if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
                 $imagePath = "asset/upload/profilePic/" . $fileName;
 

@@ -14,7 +14,7 @@ if(!$conn) {
 
 $email = $_SESSION['email'];
 
-$sql = "SELECT firstname, lastname, selfImage FROM userinfo WHERE email = ? LIMIT 1";
+$sql = "SELECT firstname, lastname, selfImage FROM userinfo WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
 if(!$stmt) {
@@ -27,9 +27,8 @@ $result = $stmt->get_result();
 
 if($result && $result->num_rows > 0) {
     $user = $result->fetch_assoc();
-    $profileImage = !empty($user['selfImage']) ? $user['selfImage'] : 'asset/imgs/defaultImgs.png';
-
-    $_SESSION['profile_img'] = $profileImage;
+    $profileImage = !empty($user['selfImage']) ? '../../' . $user['selfImage'] : "../../asset/imgs/defaultImg.png";
+    $_SESSION['profile_Image'] = $profileImage;
     $_SESSION['name'] = trim($user['firstname'] . ' ' . $user['lastname']);
 } else {
     header('Location: ../view/html/loginPage.html');
@@ -51,10 +50,11 @@ $conn->close();
   <body>
       <header class="topBar">
           <div class="userHeadInfo">
-              <img alt="Profile Image" id="profileImg" src="<?php echo htmlspecialchars($_SESSION['profile_img']); ?>" />
-              <span class="profile-name"><?php echo htmlspecialchars($_SESSION['name']); ?></span>
+            
+              <img alt="Profile Image" class="profileImg" src="<?php echo $_SESSION['profile_Image']; ?>" height="50" width=auto />
+              <span class="profileName"><?php echo $_SESSION['name']; ?></span>
           </div>
-          <button class="logout-btn" onclick="logout()">Logout</button>
+          <button class="logoutBtn" onclick="logout()">Logout</button>
       </header>
 
       <div class="layout">
