@@ -1,4 +1,4 @@
 <?php
-    header('location: view/html/homePage.php');
+    header('location: view/php/homePage.php');
 ?>
 

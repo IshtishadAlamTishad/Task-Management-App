@@ -19,6 +19,7 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         message.textContent = "Please fill in all fields.";
         return;
     }
+    
 
     if (password.length < 8) {
         e.preventDefault();

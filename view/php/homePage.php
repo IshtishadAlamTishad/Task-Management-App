@@ -14,11 +14,11 @@ session_destroy();
 
     <body>
         <div class="navbar">
-            <a href="homePage.php">Home</a>
-            <a href="aboutUs.html" id="aboutUs">About Us</a>
-            <a href="contactUSPage.html">Contact Us</a>
-            <a href="loginPage.html" class="login">Login</a>
-            <a href="signupPage.html" class="signup">SignUP</a>
+            <a href="../php/homePage.php">Home</a>
+            <a href="../html/aboutUs.html" id="aboutUs">About Us</a>
+            <a href="../html/contactUsPage.html">Contact Us</a>
+            <a href="../html/loginPage.html" class="login">Login</a>
+            <a href="../html/signupPage.html" class="signup">SignUP</a>
         </div>
 
         <div class="container">

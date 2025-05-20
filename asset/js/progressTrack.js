@@ -1,26 +1,14 @@
-const addTaskBtn = document.getElementById('addTaskBtn');
-const taskTitleInput = document.getElementById('taskTitle');
 const taskList = document.getElementById('taskList');
 const completionBar = document.getElementById('completionBar');
 const completedCountElem = document.getElementById('completedCount');
 const totalCountElem = document.getElementById('totalCount');
 const completionPercentageElem = document.getElementById('completionPercentage');
 
-let tasks = [];
+let tasks = [
+  // { title: "Task 1", completed: false },
+  // { title: "Task 2", completed: true }
+];
 
-addTaskBtn.addEventListener('click', () => {
-  const taskTitle = taskTitleInput.value.trim();
-
-  if (taskTitle) {
-    const task = {
-      title: taskTitle,
-      completed: false
-    };
-    tasks.push(task);
-    taskTitleInput.value = '';
-    renderTasks();
-  }
-});
 
 function renderTasks() {
   taskList.innerHTML = '';
@@ -46,12 +34,10 @@ function renderTasks() {
   updateProgress();
 }
 
-
 function toggleTaskCompletion(index) {
   tasks[index].completed = !tasks[index].completed;
   renderTasks();
 }
-
 
 function updateProgress() {
   const totalTasks = tasks.length;
@@ -64,3 +50,5 @@ function updateProgress() {
 
   completionBar.style.width = `${completionPercentage}%`;
 }
+
+renderTasks();

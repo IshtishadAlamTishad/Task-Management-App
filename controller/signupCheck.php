@@ -11,14 +11,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $first = mysqli_real_escape_string($conn, $_POST['firstname']);
     $last = mysqli_real_escape_string($conn, $_POST['lastname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
+<<<<<<< HEAD
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // hashed
+=======
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+>>>>>>> 1f1d66e (updated backend validation)
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
     $dob = mysqli_real_escape_string($conn, $_POST['dob']);
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
 
     if (isset($_FILES["profile_image"]) && $_FILES["profile_image"]["error"] === UPLOAD_ERR_OK) {
-        $targetDir = "../../imgs/";
+        $targetDir = "../asset/upload/profilePic/";
         if (!is_dir($targetDir)) {
             mkdir($targetDir, 0755, true);
         }
@@ -30,10 +34,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         if (in_array($imageFileType, $allowed)) {
             if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
-                $imagePath = "imgs/" . $fileName;
+                $imagePath = "asset/upload/profilePic/" . $fileName;
 
-                $sql = "INSERT INTO userinfo (firstname, lastname, email, password, phone, dob, gender, address, selfImage) 
-                        VALUES ('$first', '$last', '$email', '$password', '$phone', '$dob', '$gender', '$address', '$imagePath')";
+                $sql = "INSERT INTO userinfo (firstname,lastname,email,password,phone,dob,gender,address,selfImage) 
+                        VALUES ('$first','$last','$email','$password','$phone','$dob','$gender','$address','$imagePath')";
 
                 if (mysqli_query($conn, $sql)) {
                     $_SESSION['success'] = "Registration successful. Please log in.";

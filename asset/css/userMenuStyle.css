@@ -12,7 +12,7 @@ body {
   overflow: hidden;
 }
 
-.top-bar {
+.topBar {
   height: 70px;
   width: 100%;
   background : linear-gradient(rgb(54, 110, 230));
@@ -24,7 +24,7 @@ body {
   z-index: 1000;
 }
 
-.user-header-info {
+.userHeadInfo {
   display: flex;
   align-items: center;
   gap: 15px;
