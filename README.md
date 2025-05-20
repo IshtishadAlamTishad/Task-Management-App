@@ -15,9 +15,10 @@
     Frontend:
     HTML: Structure of the web application.
     CSS: Styling for the user interface.
+    JavaScript: Validating user inputs and others variable fields.
 
     Backend:
-    JavaScript: Validating user inputs and others variable fields.
+    PHP : Manages server-side logic,processes form submissions and interacts with the database.
 
 ### Installation
 
@@ -49,24 +50,29 @@
 ### Project Structure
     The following is the directory structure of the project:
 
-    task-management-app/
+    Task-Management-App/
+    ├── asset/
+    │   └── [Static assets such as CSS, JavaScript, and images]
+    │   └── css [contains .css files]
+    │   └── js [contains .js files]
+    │   └── Database [contains DB tables]
+    │   └── imgs [contains images/icons]
+    │   └── upload
+    │       └──profilePic [contains user's profile image]
     │
-    ├── css/                        # Stylesheets
-    │   ├── contactUsStyle.css      # Styles for the "Contact Us" form
-    │   └── taskManagementStyle.css # Main app styles
+    ├── controller/
+    │   └── [PHP files handling business logic and request processing .php]
     │
-    ├── js/                         # JavaScript files
-    │   ├── contactUs.js            # Handles the "Contact Us" form submission
-    │   └── login.js                # Handles task creation, update, delete, and validation
+    ├── model/
+    │   └── [PHP files managing data structures and database interactions .php]
     │
-    ├── php/                        # PHP files for server-side processing
-    │   ├── loginValidation.php     # PHP script for task management
+    ├── view/
+    │   └── [HTML files rendering the structure .HTML]
+    │   └── [PHP files rendering the user interface .php]
     │
-    ├── html/                       # Html files for structure
-    │   ├── loginPage.html          # HTML files for task-management
-    │   └── signupPage.html
-    │
-    └── README.md                   # This file
+    ├── index.php
+    ├── README.md
+    └── LICENSE
 
 ### Contributors
     Mohammed Istishad Alam Tishad,22-46130-1,CSE,FST,AIUB
