@@ -15,9 +15,10 @@
     Frontend:
     HTML: Structure of the web application.
     CSS: Styling for the user interface.
+    JavaScript: Validating user inputs and others variable fields.
 
     Backend:
-    JavaScript: Validating user inputs and others variable fields.
+    PHP : Manages server-side logic,processes form submissions and interacts with the database.
 
 ### Installation
 
