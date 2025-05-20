@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2025 at 10:58 PM
+-- Generation Time: May 21, 2025 at 12:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `taskinfo`
+-- Table structure for table `taskinfos`
 --
 
-CREATE TABLE `taskinfo` (
+CREATE TABLE `taskinfos` (
   `taskID` int(11) NOT NULL,
   `ID` int(11) NOT NULL,
   `taskName` varchar(100) NOT NULL,
@@ -44,9 +44,9 @@ CREATE TABLE `taskinfo` (
 --
 
 --
--- Indexes for table `taskinfo`
+-- Indexes for table `taskinfos`
 --
-ALTER TABLE `taskinfo`
+ALTER TABLE `taskinfos`
   ADD PRIMARY KEY (`taskID`),
   ADD KEY `ID` (`ID`);
 
@@ -55,9 +55,9 @@ ALTER TABLE `taskinfo`
 --
 
 --
--- AUTO_INCREMENT for table `taskinfo`
+-- AUTO_INCREMENT for table `taskinfos`
 --
-ALTER TABLE `taskinfo`
+ALTER TABLE `taskinfos`
   MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -65,10 +65,10 @@ ALTER TABLE `taskinfo`
 --
 
 --
--- Constraints for table `taskinfo`
+-- Constraints for table `taskinfos`
 --
-ALTER TABLE `taskinfo`
-  ADD CONSTRAINT `taskinfo_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `userinfo` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `taskinfos`
+  ADD CONSTRAINT `taskinfos_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `userinfos` (`ID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

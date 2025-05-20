@@ -4,7 +4,7 @@ require_once 'db.php';
 
 function login($user){
     $conn = getConnection();
-    $sql = "SELECT id FROM userinfo WHERE email = '{$user['username']}' AND password = '{$user['password']}'";
+    $sql = "SELECT id FROM userinfos WHERE email = '{$user['username']}' AND password = '{$user['password']}'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) === 1) {
@@ -17,7 +17,7 @@ function login($user){
 
 function getUserById($id){
     $conn = getConnection();
-    $sql = "SELECT firstname, lastname, selfImage FROM userinfo WHERE id = '$id'";
+    $sql = "SELECT firstname, lastname, selfImage FROM userinfos WHERE id = '$id'";
     $result = mysqli_query($conn, $sql);
 
     if(mysqli_num_rows($result) === 1){
@@ -30,14 +30,14 @@ function getUserById($id){
 
 function insertUser($user){
     $conn = getConnection();
-    $checkEmail = "SELECT id FROM userinfo WHERE email = '{$user['email']}'";
+    $checkEmail = "SELECT id FROM userinfos WHERE email = '{$user['email']}'";
     $result = mysqli_query($conn, $checkEmail);
 
     if(mysqli_num_rows($result) > 0){
         return false;
     }
 
-    $sql = "INSERT INTO userinfo (
+    $sql = "INSERT INTO userinfos (
         firstname,
         lastname,
         email,
@@ -46,7 +46,8 @@ function insertUser($user){
         DOB,
         gender,
         address,
-        selfImage
+        selfImage,
+        role
     ) VALUES (
         '{$user['firstname']}',
         '{$user['lastname']}',
@@ -56,7 +57,8 @@ function insertUser($user){
         '{$user['DOB']}',
         '{$user['gender']}',
         '{$user['address']}',
-        '{$user['selfImage']}'
+        '{$user['selfImage']}',
+        '{$user['role']}'
     )";
 
     if(mysqli_query($conn, $sql)){
@@ -69,7 +71,7 @@ function insertUser($user){
 
 function updateUser($user){
     $conn = getConnection();
-    $sql = "UPDATE userinfo SET
+    $sql = "UPDATE userinfos SET
         firstname = '{$user['firstname']}',
         lastname = '{$user['lastname']}',
         phone = '{$user['phone']}',
@@ -87,7 +89,7 @@ function updateUser($user){
 
 function updateAvatar($user){
     $conn = getConnection();
-    $sql = "UPDATE userinfo SET selfImage = '{$user['selfImage']}' WHERE email = '{$user['email']}'";
+    $sql = "UPDATE userinfos SET selfImage = '{$user['selfImage']}' WHERE email = '{$user['email']}'";
 
     if(mysqli_query($conn, $sql)){
         return true;
@@ -98,7 +100,7 @@ function updateAvatar($user){
 
 function updatePassword($user){
     $conn = getConnection();
-    $sql = "UPDATE userinfo SET password = '{$user['password']}' WHERE email = '{$user['email']}'";
+    $sql = "UPDATE userinfos SET password = '{$user['password']}' WHERE email = '{$user['email']}'";
 
     if(mysqli_query($conn, $sql)){
         return true;

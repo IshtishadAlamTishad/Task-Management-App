@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
                 $imagePath = "asset/upload/profilePic/" . $fileName;
 
-                $sql = "INSERT INTO userinfo (firstname,lastname,email,password,phone,dob,gender,address,selfImage) 
-                        VALUES ('$first','$last','$email','$password','$phone','$dob','$gender','$address','$imagePath')";
+                $sql = "INSERT INTO userinfos (firstname,lastname,email,password,phone,dob,gender,address,selfImage,role) 
+                        VALUES ('$first','$last','$email','$password','$phone','$dob','$gender','$address','$imagePath','User')";
 
                 if (mysqli_query($conn, $sql)) {
                     $_SESSION['success'] = "Registration successful. Please log in.";

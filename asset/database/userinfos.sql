@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2025 at 10:48 PM
+-- Generation Time: May 21, 2025 at 12:13 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,10 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userinfo`
+-- Table structure for table `userinfos`
 --
 
-CREATE TABLE `userinfo` (
+CREATE TABLE `userinfos` (
   `ID` int(11) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `lastname` varchar(50) NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE `userinfo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `userinfo`
+-- Dumping data for table `userinfos`
 --
 
-INSERT INTO `userinfo` (`ID`, `firstname`, `lastname`, `email`, `password`, `phone`, `DOB`, `gender`, `address`, `selfImage`, `role`) VALUES
+INSERT INTO `userinfos` (`ID`, `firstname`, `lastname`, `email`, `password`, `phone`, `DOB`, `gender`, `address`, `selfImage`, `role`) VALUES
 (15, 'Mohammed Istishad Alam', 'Tishad', 'tishadalam86@gmail.com', 'tishadtishad88999', 1644829338, '2001-02-28', 'male', 'Haji Noor Ahmed Road,2no gate', 'asset/upload/profilePic/1747772366_tis.png', 'Admin');
 
 --
@@ -53,9 +53,9 @@ INSERT INTO `userinfo` (`ID`, `firstname`, `lastname`, `email`, `password`, `pho
 --
 
 --
--- Indexes for table `userinfo`
+-- Indexes for table `userinfos`
 --
-ALTER TABLE `userinfo`
+ALTER TABLE `userinfos`
   ADD PRIMARY KEY (`ID`);
 
 --
@@ -63,9 +63,9 @@ ALTER TABLE `userinfo`
 --
 
 --
--- AUTO_INCREMENT for table `userinfo`
+-- AUTO_INCREMENT for table `userinfos`
 --
-ALTER TABLE `userinfo`
+ALTER TABLE `userinfos`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 COMMIT;
 

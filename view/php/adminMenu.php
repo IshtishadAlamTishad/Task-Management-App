@@ -43,7 +43,7 @@ $conn->close();
 <html>
   <head>
       <title>Menu | TM</title>
-      <link rel="stylesheet" href="../../asset/css/userMenuStyle.css" />
+      <link rel="stylesheet" href="../../asset/css/adminMenuStyle.css" />
       <link rel="icon" type="image/png" href="../../asset/imgs/icon.png" />
   </head>
 
@@ -62,13 +62,14 @@ $conn->close();
               <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
               <nav class="nav-buttons">
                   <button onclick="showContent('../html/dashboard.html')">Dashboard</button>
-                  <button onclick="showContent('../php/profile.php')">Profile</button>
+                  <button onclick="showContent('../html/profile.html')">Profile</button>
                   <button onclick="showContent('../html/taskcreation.html')">Create Task</button>
                   <button onclick="showContent('../html/progressTrackPage.html')">Progress Tracker</button>
                   <button onclick="showContent('../html/searchFilterPage.html')">Search & Filter</button>
                   <button onclick="showContent('../html/activityHistoryPage.html')">Activity History</button>
                   <button onclick="showContent('../html/subTaskPage.html')">Subtask</button>
                   <button onclick="showContent('../html/notifications.html')">Notifications</button>
+                  <button onclick="showContent('../html/roleBasePage.html')">Change User roles</button>
                   <button onclick="showContent('../html/dueDatePage.html')">Due Dates</button>
                   <button onclick="showContent('../html/calenderView.html')">Calendar View</button>
               </nav>
@@ -79,6 +80,6 @@ $conn->close();
           </main>
       </div>
 
-      <script src="../../asset/js/userMenu.js"></script>
+      <script src="../../asset/js/adminMenu.js"></script>
   </body>
 </html>

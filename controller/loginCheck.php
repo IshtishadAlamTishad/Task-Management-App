@@ -1,15 +1,16 @@
 <?php
-error_reporting(E_ALL);
 session_start();
+error_reporting(E_ALL);
+
 
 require_once('../model/userModel.php');
 
 function validateEmail($email) {
     $email = trim($email);
-    if ($email === "") {
+    if($email === "") {
         return "Email is required";
     }
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         return "Invalid email format";
     }
     return null;
@@ -17,31 +18,37 @@ function validateEmail($email) {
 
 function validatePassword($password) {
     $password = trim($password);
-    if ($password === "") {
+    if($password === "") {
         return "Password is required";
     }
-    if (strlen($password) < 8) {
+    if(strlen($password) < 8) {
         return "Password must be at least 8 characters";
     }
     return null;
 }
 
-function authUser($email, $password) {
-    $userId = login(['username' => $email, 'password' => $password]);
+function authUser($email, $password, $role) {
+    $userId = login(['username' => $email,'password' =>$password]);
 
     if ($userId) {
         $_SESSION['status'] = true;
         $_SESSION['user_id'] = $userId;
-        $_SESSION['email'] = $email; 
+        $_SESSION['email'] = $email;
+        $_SESSION['role'] = $role;
 
         $userData = getUserById($userId);
         if ($userData) {
-            $_SESSION['name'] = $userData['firstname'] . ' ' . $userData['lastname'];
+            $_SESSION['name'] = $userData['firstname'] .' ' .$userData['lastname'];
             $_SESSION['profile_img'] = $userData['selfImage'] ?: 'asset/imgs/defaultImgs.png';
         }
 
         setcookie('status', 'true', time() + 3000, '/');
-        header("Location: ../view/php/userMenu.php");
+
+        if ($_SESSION['role'] === 'Admin') {
+            header("Location: ../view/php/adminMenu.php");
+        } else {
+            header("Location: ../view/php/userMenu.php");
+        }
         exit;
     } else {
         $_SESSION['login_error'] = "Invalid email or password";
@@ -50,10 +57,11 @@ function authUser($email, $password) {
     }
 }
 
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST['email'] ?? '');
     $password = trim($_POST['password'] ?? '');
-
+    $role = trim($_POST['role'] ?? '');
     $emailError = validateEmail($email);
     $passwordError = validatePassword($password);
 
@@ -63,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    authUser($email, $password);
+    authUser($email,$password,$role);
 
 } else {
     header("Location: ../view/html/loginPage.html?message=" . urlencode("Unauthorized access"));
