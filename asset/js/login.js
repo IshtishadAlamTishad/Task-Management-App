@@ -16,7 +16,15 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     if (!email || !password) {
         e.preventDefault();
         message.style.color = "red";
-        message.textContent = "Please fill in all fields.";
+        message.textContent = "Please fill in all fields";
+        return;
+    }
+
+    if (email === password) {
+        e.preventDefault();
+        message.style.color = "red";
+        message.textContent = "Email and Password Can't be same";
+        alert("Email and Password Can't be same");
         return;
     }
     

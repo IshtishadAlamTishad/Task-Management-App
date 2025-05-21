@@ -10,7 +10,7 @@ function validateEmail($email) {
     if($email === "") {
         return "Email is required";
     }
-    if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    if(!filter_var($email,FILTER_VALIDATE_EMAIL)) {
         return "Invalid email format";
     }
     return null;
@@ -26,47 +26,45 @@ function validatePassword($password) {
     }
     return null;
 }
+function authUser($email, $password) {
 
-function authUser($email,$password) {
-    $userId = login(['username' => $email,'password' =>$password]);
-
-    if ($userId) {
-        $_SESSION['status'] = true;
-        $_SESSION['user_id'] = $userId;
-        $_SESSION['email'] = $email;
-
-        $role = getUserRoleById($userId);
-        if (!$role) {
-            echo "Exception error: Role not found";
-            exit;
-        }
-        $_SESSION['role'] = $role;
-
-        $userData = getUserById($userId);
-        if ($userData) {
-            $_SESSION['name'] = $userData['firstname'] .' ' .$userData['lastname'];
-            $_SESSION['profile_img'] = $userData['selfImage'] ?: 'asset/imgs/defaultImgs.png';
-        }
-
-        setcookie('status','true', time() + 3000, '/');
-
-        $role = trim($role);
-
-        if ($role === 'Admin') {
-            header("Location: ../view/php/adminMenu.php");
-        } else if ($role === 'User') {
-            header("Location: ../view/php/userMenu.php");
-        } else {
-            echo "Exception error: Unknown role '$role'";
-        }
-        exit;
-    } else {
-        $_SESSION['login_error'] = "Invalid email or password";
-        header("Location: ../view/html/loginPage.html");
+    $user = getUserByEmail($email); 
+    if(!$user) {
+        header("Location: ../view/html/loginPage.html?message=" . urlencode("User doesn't exist"));
         exit;
     }
-}
 
+    if($user['password'] !== $password) {
+        header("Location: ../view/html/loginPage.html?message=" . urlencode("Invalid password"));
+        exit;
+    }
+
+    $_SESSION['status'] = true;
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['email'] = $email;
+
+    $role = getUserRoleById($user['id']);
+    if(!$role) {
+        echo "Exception error: Role not found";
+        exit;
+    }
+
+    $_SESSION['role'] = $role;
+    $_SESSION['name'] = $user['firstname'] .' ' .$user['lastname'];
+    $_SESSION['profile_img'] = $user['selfImage'] ?: 'asset/imgs/defaultImgs.png';
+
+    setcookie('status', 'true', time() + 3000, '/');
+
+    if($role === 'Admin') {
+        header("Location: ../view/php/adminMenu.php");
+    } else if ($role === 'User') {
+        header("Location: ../view/php/userMenu.php");
+    } else {
+        echo "Exception error: Unknown role '$role'";
+    }
+
+    exit;
+}
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

@@ -29,6 +29,18 @@ function getUserById($id){
     }
 }
 
+function getUserByEmail($email){
+    $conn = getConnection();
+    $sql = "SELECT id, firstname,lastname,selfImage,password,role FROM userinfos WHERE email = '$email'";
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        return mysqli_fetch_assoc($result);
+    } else {
+        return false;
+    }
+}
+
 
 function insertUser($user){
     $conn = getConnection();

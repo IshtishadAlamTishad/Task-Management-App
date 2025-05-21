@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  
   <head>
     <title>Task Progress Tracking</title>
     <link rel="stylesheet" href="../../asset/css/progressTrackStyle.css" />
@@ -7,23 +8,24 @@
   </head>
 
   <body>
-    
-    <div class="container">
-      <h2>Task Progress Tracker</h2>
+      <form id="progressTrackForm" >
+      <div class="container">
+        <h2>Task Progress Tracker</h2>
 
-      <div id="taskList"></div>
+        <div id="taskList"></div>
 
-      <div id="progressDashboard">
-        <h3>Progress Dashboard</h3>
-        <div id="completionBarContainer">
-          <div id="completionBar"></div>
-        </div>
-        <div id="taskCompletionStats">
-          <p>Completed Tasks: <span id="completedCount">0</span> / <span id="totalCount">0</span></p>
-          <p>Completion Percentage: <span id="completionPercentage">0%</span></p>
+        <div id="progressDashboard">
+          <h3>Progress Dashboard</h3>
+          <div id="completionBarContainer">
+            <div id="completionBar"></div>
+          </div>
+          <div id="taskCompletionStats">
+            <p>Completed Tasks: <span id="completedCount">0</span> / <span id="totalCount">0</span></p>
+            <p>Completion Percentage: <span id="completionPercentage">0%</span></p>
+          </div>
         </div>
       </div>
-    </div>
+    </form>
 
     <script src="../../asset/js/progressTrack.js"></script>
   </body>
