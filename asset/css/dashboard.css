@@ -28,20 +28,6 @@ body {
     color: #333;
   }
   
-  nav button {
-    background-color: #3498db;
-    border: none;
-    padding: 10px 15px;
-    color: white;
-    font-size: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  nav button:hover {
-    background-color: #2980b9;
-  }
   
   .summary-widgets {
     display: grid;

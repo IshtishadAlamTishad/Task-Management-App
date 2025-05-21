@@ -16,7 +16,7 @@ if(!$conn) {
 }
 $email = $_SESSION['email'];
 
-$sql = "SELECT firstname, lastname, email, phone, DOB, address, selfImage FROM userinfo WHERE email = ?";
+$sql = "SELECT firstname, lastname, email, phone, DOB, address, selfImage FROM userinfos WHERE email = ?";
 $stmt = $conn->prepare($sql);
 
 if(!$stmt) {
@@ -61,9 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $editErrors[] = "Invalid email format.";
         }
         if (empty($editErrors)) {
-            // Database update logic here
-            // Example: updateUser Profile($firstName, $lastName, $email, $phone, $dob, $address);
-            // Redirect or show success message
+            //updateUser Profile();
         }
     }
     if (isset($_POST['reset-password'])) {
@@ -78,9 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $passwordErrors[] = "New Password and Confirm Password do not match.";
         }
         if (empty($passwordErrors)) {
-            // Password update logic here
-            // Example: updateUser Password($currentPassword, $newPassword);
-            // Redirect or show success message
+            //updateUser Password();
         }
     }
 }
@@ -98,7 +94,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="profile-container">
         <div class="profile-header">
-            <img alt="Profile Image" class="profileImg" src="<?php echo $_SESSION['profile_Image']; ?> " height="100" width="auto">
+            <img alt="Profile Image" class="profileImg" src="<?php echo $_SESSION['profile_Image']; ?> " height="60" width="auto">
             <h2><?php echo $_SESSION['name']; ?></h2>
             <p><?php echo $_SESSION['email']; ?></p>
         </div>
