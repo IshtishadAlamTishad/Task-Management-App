@@ -27,13 +27,19 @@ function validatePassword($password) {
     return null;
 }
 
-function authUser($email, $password, $role) {
+function authUser($email,$password) {
     $userId = login(['username' => $email,'password' =>$password]);
 
     if ($userId) {
         $_SESSION['status'] = true;
         $_SESSION['user_id'] = $userId;
         $_SESSION['email'] = $email;
+
+        $role = getUserRoleById($userId);
+        if (!$role) {
+            echo "Exception error: Role not found";
+            exit;
+        }
         $_SESSION['role'] = $role;
 
         $userData = getUserById($userId);
@@ -42,12 +48,16 @@ function authUser($email, $password, $role) {
             $_SESSION['profile_img'] = $userData['selfImage'] ?: 'asset/imgs/defaultImgs.png';
         }
 
-        setcookie('status', 'true', time() + 3000, '/');
+        setcookie('status','true', time() + 3000, '/');
 
-        if ($_SESSION['role'] === 'Admin') {
+        $role = trim($role);
+
+        if ($role === 'Admin') {
             header("Location: ../view/php/adminMenu.php");
-        } else {
+        } else if ($role === 'User') {
             header("Location: ../view/php/userMenu.php");
+        } else {
+            echo "Exception error: Unknown role '$role'";
         }
         exit;
     } else {
@@ -56,6 +66,7 @@ function authUser($email, $password, $role) {
         exit;
     }
 }
+
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -71,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         exit;
     }
 
-    authUser($email,$password,$role);
+    authUser($email,$password);
 
 } else {
     header("Location: ../view/html/loginPage.html?message=" . urlencode("Unauthorized access"));

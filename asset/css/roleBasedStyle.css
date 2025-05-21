@@ -1,50 +1,64 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background: linear-gradient(135deg, #2980b9, #6dd5fa);
-  }
-  
-  header {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  .role-assignment {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  select {
-    padding: 8px 12px;
-    font-size: 16px;
-  }
-  
-  nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: center;
-  }
-  
-  nav li {
-    display: inline-block;
-    margin: 10px;
-    padding: 10px 20px;
-    background-color: #2d9cdb;
-    color: white;
-    border-radius: 5px;
-  }
-  
-  section {
-    margin: 30px auto;
-    padding: 20px;
-    max-width: 600px;
-    border-radius: 10px;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    display: none;
-  }
-  
-  .visible {
-    display: block !important;
-  }
-  
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background : linear-gradient(135deg, #2980b9, #6dd5fa);
+  color: #333;
+}
+
+.wrapper {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.admin-controls {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.user-list, .user-info {
+  flex: 1;
+  min-width: 300px;
+}
+
+.scrollbox {
+  height: 250px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #fafafa;
+}
+
+.scrollbox div {
+  padding: 8px;
+  margin-bottom: 5px;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.scrollbox div:hover {
+  background-color: #d4e3f0;
+}
+
+.info-box {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #f

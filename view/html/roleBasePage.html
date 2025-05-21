@@ -1,50 +1,49 @@
 <!DOCTYPE html>
-
-  <head>
-    <title>Role-Based Access</title>
-    <link rel="stylesheet" href="../../asset/css/roleBasedStyle.css" />
-    <link rel="icon" type="image/png" href="../../asset/imgs/icon.png">
-  </head>
-  
-  <body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Role Management Dashboard</title>
+  <link rel="stylesheet" href="../../asset/css/roleBasedStyle.css">
+</head>
+<body>
+  <div class="wrapper">
     <header>
-      <h1>Role-Based Access Control</h1>
+      <h1>Admin Role Management</h1>
     </header>
 
-    <section class="role-assignment">
+    <div class="admin-controls">
       <label for="roleSelect">Select Role:</label>
-      <select id="roleSelect" onchange="updateUIBasedOnRole()">
+      <select id="roleSelect" onchange="filterUsersByRole()">
+        <option value="all">All</option>
         <option value="admin">Admin</option>
         <option value="editor">Editor</option>
         <option value="user">User</option>
       </select>
-    </section>
+    </div>
 
-    <nav id="navMenu">
-      <ul>
-        <li class="common">Dashboard</li>
-        <li class="admin-only">Permission Settings</li>
-        <li class="admin-only">Role Management</li>
-        <li class="editor-only">Edit Content</li>
-        <li class="user-only">View Profile</li>
-      </ul>
-    </nav>
+    <div class="content">
+      <div class="user-list">
+        <h2>Users</h2>
+        <div id="userScrollBox" class="scrollbox"></div>
+      </div>
 
-    <section id="adminPanel" class="admin-only">
-      <h2>Admin Panel</h2>
-      <p>Only visible to Admins</p>
-    </section>
+      <div class="user-info">
+        <h2>User Info</h2>
+        <div id="userDetails" class="info-box">Select a user to view details</div>
 
-    <section id="editorPanel" class="editor-only">
-      <h2>Editor Tools</h2>
-      <p>Only visible to Editors</p>
-    </section>
+        <div class="role-update">
+          <label for="newRole">Change Role:</label>
+          <select id="newRole">
+            <option value="admin">Admin</option>
+            <option value="editor">Editor</option>
+            <option value="user">User</option>
+          </select>
+          <button onclick="updateUserRole()">Update Role</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-    <section id="userPanel" class="user-only">
-      <h2>User Dashboard</h2>
-      <p>Only visible to Users</p>
-    </section>
-
-    <script src="../../asset/js/roleBased.js"></script>
-  </body>
+  <script src="../../asset/js/roleBased.js"></script>
+</body>
 </html>

@@ -8,10 +8,12 @@ function login($user){
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) === 1) {
-        return mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($result);
+        return $row['id']; 
     } else {
         return false;
     }
+
 }
 
 
@@ -93,6 +95,18 @@ function updateAvatar($user){
 
     if(mysqli_query($conn, $sql)){
         return true;
+    } else {
+        return false;
+    }
+}
+function getUserRoleById($id){
+    $conn = getConnection();
+    $sql = "SELECT role FROM userinfos WHERE id = '$id'";
+    $result = mysqli_query($conn, $sql);
+
+    if(mysqli_num_rows($result) === 1){
+        $row = mysqli_fetch_assoc($result);
+        return $row['role'];
     } else {
         return false;
     }
