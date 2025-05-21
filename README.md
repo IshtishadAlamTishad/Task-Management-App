@@ -76,7 +76,7 @@
 
 ### Contributors
     Mohammed Istishad Alam Tishad,22-46130-1,CSE,FST,AIUB
-    Rakibul Riyel,22-461-1,CSE,FST,AIUB
+    Rakibul Riyel,22-46138-1,CSE,FST,AIUB
 
 ### Fork the repository.
     Create a new branch (git checkout -b feature-branch).
