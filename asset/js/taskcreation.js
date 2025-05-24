@@ -42,6 +42,8 @@ function submitDetailedForm() {
   const desc = document.getElementById('taskDesc').value.trim();
   const label = document.getElementById('taskLabel').value.trim();
   const category = document.getElementById('taskCategory').value;
+  const startTime = document.getElementById('startTime').value;
+  const endTime = document.getElementById('endTime').value;
   const fileInput = document.getElementById('detailedTaskFile');
   const file = fileInput.files[0];
 
@@ -55,6 +57,8 @@ function submitDetailedForm() {
     desc,
     label,
     category,
+    startTime,
+    endTime,
     file: file ? { name: file.name, size: file.size } : null
   });
 
