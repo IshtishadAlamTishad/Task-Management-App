@@ -64,6 +64,12 @@ header h1 {
   margin-bottom: 15px;
 }
 
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 form {
   display: flex;
   flex-direction: column;

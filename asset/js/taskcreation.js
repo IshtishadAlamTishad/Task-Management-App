@@ -33,7 +33,6 @@ function quickAddTask() {
 
 function toggleAdvanced() {
   const form = document.getElementById('advancedForm');
-  taskNameInput.value = quickInput.value.trim();
   form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
 }
 
