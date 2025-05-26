@@ -7,6 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (!$conn) {
         die("Database connection failed!");
     }
+    $userId = $_SESSION['user_id'] ?? null;
+    if (!$userId) {
+        echo "<script>alert('User not logged in.'); window.location.href='../view/php/taskcreation.php';</script>";
+        exit;
+    }
 
     $taskName = mysqli_real_escape_string($conn, $_POST['taskName']);
     $taskDesc = mysqli_real_escape_string($conn, $_POST['taskDesc']);
@@ -14,61 +19,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $taskCategory = mysqli_real_escape_string($conn, $_POST['taskCategory']);
     $startTime = mysqli_real_escape_string($conn, $_POST['startTime']);
     $endTime = mysqli_real_escape_string($conn, $_POST['endTime']);
-     
-    if (isset($_FILES["detailedTaskFile"]) && $_FILES["detailedTaskFile"]["error"] === UPLOAD_ERR_OK) {
-        $targetDir = "../asset/upload/taskFiles/";
-        if (!is_dir($targetDir)) {
-            mkdir($targetDir, 0777, true);
-        }
-
-        $fileName = time() . "_" . basename($_FILES["detailedTaskFile"]["name"]);
-        $targetFilePath = $targetDir . $fileName;
-        $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
-        $allowed = ["pdf", "docx", "txt"];
-
-        if (in_array($fileType, $allowed)) {
-            if (move_uploaded_file($_FILES["detailedTaskFile"]["tmp_name"], $targetFilePath)) {
-                $userId = $_SESSION['user_id'] ?? null;
-                if (!$userId) {
-                    echo "<script>alert('User not logged in.');</script>";
-                    exit;
-                }
-                $sql = "INSERT INTO taskinfos (ID, taskName, taskDesc, taskLabel, taskCategory, startTime, endTime, taskFile)
-                        VALUES ('$userId', '$taskName', '$taskDesc', '$taskLabel', '$taskCategory', '$startTime', '$endTime', '$targetFilePath')";
-                if (mysqli_query($conn, $sql)) {
-                    $_SESSION['success'] = "Task added successfully.";
-                    header("Location: ../view/php/taskcreation.php");
-                    exit;
-                } else {
-                    echo "Database error: " . mysqli_error($conn);
-                }
-            } else {
-                echo "<script>alert('File upload failed.');</script>";
-                exit;
-            }
-        } else {
-            echo "<script>alert('Invalid file type. Only PDF, DOCX & TXT allowed!');</script>";
-            exit;
-        }
-    }
-    else {
-        echo "<script>alert('No file selected or upload error!');</script>";
-        exit;
-    }
-    mysqli_close($conn);
-}
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $taskName = $_POST['taskName'];
-    $taskDesc = $_POST['taskDesc'];
-    $taskLabel = $_POST['taskLabel'];
-    $taskCategory = $_POST['taskCategory'];
-    $startTime = $_POST['startTime'];
-    $endTime = $_POST['endTime'];
     $taskFile = $_FILES['detailedTaskFile'];
 
     $errors = [];
-
     if (preg_match('/\d/', $taskName)) {
         $errors[] = "Error: Task name cannot contain numbers.";
     }
@@ -87,13 +40,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($taskFile['error'] == UPLOAD_ERR_NO_FILE) {
         $errors[] = "Error: Please upload a file.";
     }
-    
+
     if (!empty($errors)) {
         foreach ($errors as $error) {
             echo $error . "<br>";
         }
-    } else {
-        echo "Task added successfully!";
+        exit;
     }
+
+    $targetDir = "../asset/upload/taskFiles/";
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0777, true);
+    }
+
+    $fileName = time() . "_" . basename($taskFile["name"]);
+    $targetFilePath = $targetDir . $fileName;
+    $fileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+    $allowed = ["pdf", "docx", "txt"];
+
+    if (!in_array($fileType, $allowed)) {
+        echo "<script>alert('Invalid file type. Only PDF, DOCX & TXT allowed!');</script>";
+        exit;
+    }
+
+    if (!move_uploaded_file($taskFile["tmp_name"], $targetFilePath)) {
+        echo "<script>alert('File upload failed.');</script>";
+        exit;
+    }
+
+    $sql = "INSERT INTO taskinfos (ID, taskName, taskDesc, taskLabel, taskCategory, startTime, endTime, taskFile)
+            VALUES ('$userId', '$taskName', '$taskDesc', '$taskLabel', '$taskCategory', '$startTime', '$endTime', '$targetFilePath')";
+
+    if (mysqli_query($conn, $sql)) {
+        $_SESSION['success'] = "Task added successfully.";
+        header("Location: ../view/php/taskcreation.php");
+        exit;
+    } else {
+        echo "Database error: " . mysqli_error($conn);
+    }
+
+    mysqli_close($conn);
 }
 ?>

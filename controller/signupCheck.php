@@ -13,9 +13,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $dob = mysqli_real_escape_string($conn, $_POST['dob']);
-    $gender = mysqli_real_escape_string($conn, $_POST['gender']);
-    $address = mysqli_real_escape_string($conn, $_POST['address']);
+    $dob = mysqli_real_escape_string($conn,$_POST['dob']);
+    $gender = mysqli_real_escape_string($conn,$_POST['gender']);
+    $address = mysqli_real_escape_string($conn,$_POST['address']);
+
+    $hashedPassword = password_hash($password,PASSWORD_DEFAULT);
 
     if (isset($_FILES["profile_image"]) && $_FILES["profile_image"]["error"] === UPLOAD_ERR_OK) {
         $targetDir = "../asset/upload/profilePic/";
@@ -28,20 +30,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
         $allowed = ["jpg", "jpeg", "png"];
 
-        if (in_array($imageFileType,$allowed)) {
+        if (in_array($imageFileType, $allowed)) {
             if (move_uploaded_file($_FILES["profile_image"]["tmp_name"], $targetFilePath)) {
                 $imagePath = "asset/upload/profilePic/" . $fileName;
 
-                $sql = "INSERT INTO userinfos (firstname,lastname,email,password,phone,dob,gender,address,selfImage,role) 
-                        VALUES ('$first','$last','$email','$password','$phone','$dob','$gender','$address','$imagePath','User')";
+                $stmt = $conn->prepare("INSERT INTO userinfos (firstname, lastname, email, password, phone, dob, gender, address, selfImage, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'User')");
+                $stmt->bind_param("sssssssss", $first, $last, $email, $hashedPassword, $phone, $dob, $gender, $address, $imagePath);
 
-                if (mysqli_query($conn, $sql)) {
+                if ($stmt->execute()) {
                     $_SESSION['success'] = "Registration successful. Please log in.";
                     header("Location: ../view/html/loginPage.html");
                     exit;
                 } else {
-                    echo "Database error: " . mysqli_error($conn);
+                    echo "Database error: " . $stmt->error;
                 }
+                $stmt->close();
             } else {
                 echo "<script>alert('Image upload failed.');</script>";
             }

@@ -1,112 +1,75 @@
-const uploadInput = document.getElementById('uploads');
-const profileImg = document.getElementById('imgs');
-const submitBtn = document.querySelector('.submit');
-const cancelBtn = document.querySelector('.cancel');
-const errorMsg = document.getElementById('msg');
-const form = document.querySelector('form');
+let uploadInput = document.getElementById('uploads');
+let profileImg = document.getElementById('imgs');
+let submitBtn = document.querySelector('.submit');
+let cancelBtn = document.querySelector('.cancel');
+let errorMsg = document.getElementById('msg');
+let form = document.querySelector('form');
 
 document.getElementById('upTxt').textContent = "SignUp";
-profileImg.addEventListener('click', () => uploadInput.click());
 
-uploadInput.addEventListener('change', (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  
-  const reader = new FileReader();
-  reader.onloadend = () => {
-    profileImg.src = reader.result;
-  };
-  reader.readAsDataURL(file);
-});
-
-
-const validateNotEmpty = (value, fieldName) => {
-  if (!value.trim()) return `${fieldName} is required.`;
-  return "";
+profileImg.onclick = function () {
+  uploadInput.click();
 };
 
-const validateEmail = (email) => {
-
-  if (!email.trim()) return "Email is required.";
-  if (!email.includes('@') || !email.includes('.')) return "Email must contain '@' and '.'";
-  const atPos = email.indexOf('@');
-  const dotPos = email.lastIndexOf('.');
-  if (atPos < 1 || dotPos < atPos + 2 || dotPos + 1 >= email.length) return "Invalid email format.";
-  return "";
-
-};
-
-const validatePassword = (password) => {
-  if (!password) return "Password is required.";
-  if (password.length < 8) return "Password must be at least 8 characters.";
-  
-  return "";
-};
-
-const validateConfirmPassword = (password, confirmPassword) => {
-  if (!confirmPassword) return "Confirm Password is required.";
-  if (password !== confirmPassword) return "Passwords do not match.";
-  
-  return "";
-};
-
-const validatePhone = (phone) => {
-  if (!phone.trim()) return "Phone number is required.";
-  if (isNaN(phone)) return "Phone number must contain only digits.";
-  if (phone.length < 10) return "Phone number must be at least 10 digits.";
-  return "";
-};
-
-const validateGender = () => {
-  const gender = document.querySelector('input[name="gender"]:checked');
-  if (!gender) return "Please select your gender.";
-  return "";
-};
-
-const validateProfileImage = () => {
-  if (uploadInput.files.length === 0) return "Please upload a profile image.";
-  return "";
-};
-
-const validateForm = () => {
-  let messages = [];
-
-  messages.push(validateNotEmpty(document.getElementById('firstname').value, "First name"));
-  messages.push(validateNotEmpty(document.getElementById('lastname').value, "Last name"));
-  messages.push(validateEmail(document.getElementById('email').value));
-  messages.push(validatePhone(document.getElementById('phone').value));
-  messages.push(validateNotEmpty(document.getElementById('dob').value, "Date of birth"));
-  messages.push(validateNotEmpty(document.getElementById('address').value, "Address"));
-  messages.push(validateGender());
-  messages.push(validatePassword(document.getElementById('password').value));
-  messages.push(validateConfirmPassword(
-    document.getElementById('password').value,
-    document.getElementById('confirm_password').value
-  ));
-  messages.push(validateProfileImage());
-
-  messages = messages.filter(msg => msg !== "");
-
-  if (messages.length > 0) {
-    errorMsg.innerHTML = messages.join("<br>");
-    errorMsg.style.color = "red";
-    return false;
+uploadInput.onchange = function () {
+  let file = uploadInput.files[0];
+  if (file) {
+    let imgUrl = URL.createObjectURL(file);
+    profileImg.src = imgUrl;
   }
-
-  errorMsg.textContent = "All validations passed. Submitting form...";
-  errorMsg.style.color = "green";
-  return true;
 };
 
-submitBtn.addEventListener('click', (e) => {
+function isEmpty(value) {
+  return value.trim() === "";
+}
+
+
+function showError(message) {
+  errorMsg.style.color = "red";
+  errorMsg.innerHTML = message;
+}
+
+
+function validateForm() {
+
+  let firstName = document.getElementById('firstname').value;
+  let lastName = document.getElementById('lastname').value;
+  let email = document.getElementById('email').value;
+  let phone = document.getElementById('phone').value;
+  let dob = document.getElementById('dob').value;
+  let address = document.getElementById('address').value;
+  let password = document.getElementById('password').value;
+  let confirmPassword = document.getElementById('confirm_password').value;
+  let gender = document.querySelector('input[name="gender"]:checked');
+
+  if(isEmpty(firstName)) return showError("First name is required.");
+  if(isEmpty(lastName)) return showError("Last name is required.");
+  if(isEmpty(email) || !email.includes('@') || !email.includes('.')) return showError("Valid email is required.");
+  if(isEmpty(phone) || isNaN(phone) || phone.length < 10) return showError("Valid phone number is required.");
+  if(isEmpty(dob)) return showError("Date of birth is required.");
+  if(isEmpty(address)) return showError("Address is required.");
+  if(!gender) return showError("Please select your gender.");
+  if(isEmpty(password) || password.length<8) return showError("Password must be at least 8 characters.");
+  if(password !== confirmPassword) return showError("Passwords do not match.");
+  if(uploadInput.files.length === 0) return showError("Please upload a profile image.");
+
+  let weakPasswords = ["12345678", "password", "admin", "qwerty"];
+  if(weakPasswords.includes(password.toLowerCase())) return showError("Password is too weak!");
+
+  errorMsg.style.color = "green";
+  errorMsg.textContent = "Info is Registered!";
+  return true;
+}
+
+submitBtn.onclick = function (e) {
   e.preventDefault();
   if (validateForm()) {
-    setTimeout(() => {
+    setTimeout(function () {
       form.submit();
     }, 800);
   }
-});
+};
 
-cancelBtn.addEventListener('click', () => {
+cancelBtn.onclick = function () {
   window.location.href = "../../view/html/loginPage.html";
-});
+};

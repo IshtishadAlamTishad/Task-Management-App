@@ -64,7 +64,7 @@ $conn->close();
                   <button onclick="showContent('../html/dashboard.html')">Dashboard</button>
                   <button onclick="showContent('../php/profile.php')">Profile</button>
                   <button onclick="showContent('../html/taskcreation.html')">Create Task</button>
-                  <button onclick="showContent('../html/progressTrackPage.html')">Progress Tracker</button>
+                  <button onclick="showContent('../php/progressTrackPage.php')">Progress Tracker</button>
                   <button onclick="showContent('../html/searchFilterPage.html')">Search & Filter</button>
                   <button onclick="showContent('../html/activityHistoryPage.html')">Activity History</button>
                   <button onclick="showContent('../html/subTaskPage.html')">Subtask</button>

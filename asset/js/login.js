@@ -2,8 +2,8 @@ document.getElementById('loginTitleTxt').textContent = "Task Management";
 
 document.getElementById("togglePassword").addEventListener("click", function () {
     const password = document.getElementById("password");
-    const type = password.getAttribute("type") === "password" ? "text" : "password";
-    password.setAttribute("type", type);
+    const type = password.type === "password" ? "text" : "password";
+    password.type = type;
 
     this.innerHTML = type === "password" ? "👁" : "✖";
 });
@@ -16,18 +16,17 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
     if (!email || !password) {
         e.preventDefault();
         message.style.color = "red";
-        message.textContent = "Please fill in all fields";
+        message.textContent = "Please fill in all fields.";
         return;
     }
 
     if (email === password) {
         e.preventDefault();
         message.style.color = "red";
-        message.textContent = "Email and Password Can't be same";
-        alert("Email and Password Can't be same");
+        message.textContent = "Email and password can't be the same.";
+        alert("Email and password can't be the same.");
         return;
     }
-    
 
     if (password.length < 8) {
         e.preventDefault();
@@ -35,17 +34,13 @@ document.getElementById("loginForm").addEventListener("submit", function (e) {
         message.textContent = "Password must be at least 8 characters.";
         return;
     }
-});
 
-window.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const errorMessage = urlParams.get('message');
-
-    if (errorMessage) {
-        const message = document.getElementById("message");
+    const weakPwd = ["12345678","password","admin","qwerty"];
+    if(weakPwd.includes(password.toLowerCase())) {
+        e.preventDefault();
         message.style.color = "red";
-        message.textContent = decodeURIComponent(errorMessage);
-        window.history.replaceState({}, document.title, window.location.pathname);
+        message.textContent = "Your password is too weak!";
+        return;
     }
 });
 

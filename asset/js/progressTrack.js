@@ -1,54 +1,78 @@
-const taskList = document.getElementById('taskList');
-const completionBar = document.getElementById('completionBar');
-const completedCountElem = document.getElementById('completedCount');
-const totalCountElem = document.getElementById('totalCount');
-const completionPercentageElem = document.getElementById('completionPercentage');
+document.addEventListener('DOMContentLoaded', () => {
 
-let tasks = [
-  // { title: "Task 1", completed: false },
-  // { title: "Task 2", completed: true }
-];
-
-
-function renderTasks() {
-  taskList.innerHTML = '';
-
-  tasks.forEach((task, index) => {
-    const taskItem = document.createElement('div');
-    taskItem.classList.add('task-item');
-
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = task.completed;
-    checkbox.addEventListener('change', () => toggleTaskCompletion(index));
-
-    const taskLabel = document.createElement('span');
-    taskLabel.textContent = task.title;
-
-    taskItem.appendChild(checkbox);
-    taskItem.appendChild(taskLabel);
-
-    taskList.appendChild(taskItem);
-  });
-
-  updateProgress();
-}
-
-function toggleTaskCompletion(index) {
-  tasks[index].completed = !tasks[index].completed;
-  renderTasks();
-}
+    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            updateProgress();
+            updateTask(this.getAttribute('data-taskid'), this.checked);
+        });
+    });
+    fetchAndUpdateTasks();
+});
 
 function updateProgress() {
-  const totalTasks = tasks.length;
-  const completedTasks = tasks.filter(task => task.completed).length;
-  const completionPercentage = totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
+    const checkboxes = document.querySelectorAll('.task-checkbox');
+    const total = checkboxes.length;
+    let completed = 0;
 
-  completedCountElem.textContent = completedTasks;
-  totalCountElem.textContent = totalTasks;
-  completionPercentageElem.textContent = `${completionPercentage.toFixed(2)}%`;
+    checkboxes.forEach(cb => {
+        if (cb.checked) completed++;
+    });
 
-  completionBar.style.width = `${completionPercentage}%`;
+    const percent = total === 0 ? 0 : (completed / total) * 100;
+
+    console.log(`Progress update: ${completed}/${total} tasks completed (${percent.toFixed(2)}%)`);
+
+    document.getElementById('completedCount').textContent = completed;
+    document.getElementById('completionPercentage').textContent = percent.toFixed(2) + '%';
+    document.getElementById('completionBar').style.width = percent + '%';
 }
 
-renderTasks();
+function updateTask(taskID, isDone) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', '../../controller/taskController.php', true);
+    xhr.setRequestHeader('Content-Type','application/json;charset=UTF-8');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status !== 200) {
+                alert('Failed to update task. Please try again.');
+                fetchAndUpdateTasks();
+            } else {
+                try {
+                    const res = JSON.parse(xhr.responseText);
+                    if (!res.success) {
+                        alert('Update unsuccessful.');
+                        fetchAndUpdateTasks();
+                    }
+                } catch (e) {
+                    alert('Invalid response from server.');
+                    fetchAndUpdateTasks();
+                }
+            }
+        }
+    };
+
+    xhr.send(JSON.stringify({ taskID: taskID, isDone: isDone ? 1 : 0 }));
+}
+
+function fetchAndUpdateTasks() {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '../../controller/taskController.php', true);
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            try {
+                const tasks = JSON.parse(xhr.responseText);
+                tasks.forEach(task => {
+                    const cb = document.querySelector(`.task-checkbox[data-taskid="${task.taskID}"]`);
+                    if (cb) cb.checked = task.isDone == 1;
+                });
+                updateProgress();
+            } catch (e) {
+                alert('Failed to parse tasks data.');
+            }
+        }
+    };
+
+    xhr.send();
+}
