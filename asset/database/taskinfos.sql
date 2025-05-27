@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2025 at 12:13 AM
+-- Generation Time: May 27, 2025 at 07:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -36,8 +36,17 @@ CREATE TABLE `taskinfos` (
   `endTime` datetime NOT NULL,
   `taskLabel` varchar(50) DEFAULT NULL,
   `taskCategory` varchar(50) DEFAULT NULL,
-  `taskFile` varchar(255) DEFAULT NULL
+  `taskFile` varchar(255) DEFAULT NULL,
+  `isDone` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `taskinfos`
+--
+
+INSERT INTO `taskinfos` (`taskID`, `ID`, `taskName`, `taskDesc`, `startTime`, `endTime`, `taskLabel`, `taskCategory`, `taskFile`, `isDone`) VALUES
+(4, 17, 'Simplify', 'tm', '2025-05-28 13:52:00', '2025-05-30 19:53:00', 'dev', 'development', '../../asset/upload/taskFiles/1748288924_cnLab_22461301.pdf', 0),
+(5, 21, 'WebAPP', 'asd', '2025-05-28 03:44:00', '2025-05-30 03:43:00', 'asd', 'development', 'asset/upload/taskFiles/1748295850_cnLab_22461301.pdf', 1);
 
 --
 -- Indexes for dumped tables
@@ -58,7 +67,7 @@ ALTER TABLE `taskinfos`
 -- AUTO_INCREMENT for table `taskinfos`
 --
 ALTER TABLE `taskinfos`
-  MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `taskID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
