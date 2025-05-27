@@ -2,7 +2,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION['userID'])) {
+if(empty($_SESSION['userID'])) {
     http_response_code(401);
     echo json_encode(['error' => 'Unauthorized']);
     exit;
@@ -12,13 +12,13 @@ require_once('../model/taskModel.php');
 
 $userID = $_SESSION['userID'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+if($_SERVER['REQUEST_METHOD'] === 'GET') {
     $tasks = getAllTasks($userID);
     echo json_encode($tasks);
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);
 
     if (!isset($input['taskID'], $input['isDone'])) {

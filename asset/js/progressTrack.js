@@ -1,43 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-
-    document.querySelectorAll('.task-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function() {
-            updateProgress();
-            updateTask(this.getAttribute('data-taskid'), this.checked);
-        });
-    });
-    fetchAndUpdateTasks();
-});
-
-function updateProgress() {
-    const checkboxes = document.querySelectorAll('.task-checkbox');
-    const total = checkboxes.length;
-    let completed = 0;
-
-    checkboxes.forEach(cb => {
-        if (cb.checked) completed++;
-    });
-
-    const percent = total === 0 ? 0 : (completed / total) * 100;
-
-    console.log(`Progress update: ${completed}/${total} tasks completed (${percent.toFixed(2)}%)`);
-
-    document.getElementById('completedCount').textContent = completed;
-    document.getElementById('completionPercentage').textContent = percent.toFixed(2) + '%';
-    document.getElementById('completionBar').style.width = percent + '%';
-}
-
 function updateTask(taskID, isDone) {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '../../controller/taskController.php', true);
     xhr.setRequestHeader('Content-Type','application/json;charset=UTF-8');
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-            if (xhr.status !== 200) {
-                alert('Failed to update task. Please try again.');
-                fetchAndUpdateTasks();
-            } else {
+        if(xhr.readyState === 4) {
+            if(xhr.status === 200) {
                 try {
                     const res = JSON.parse(xhr.responseText);
                     if (!res.success) {
@@ -48,6 +16,9 @@ function updateTask(taskID, isDone) {
                     alert('Invalid response from server.');
                     fetchAndUpdateTasks();
                 }
+            } else {
+                alert('Failed to update task. Please try again.');
+                fetchAndUpdateTasks();
             }
         }
     };
@@ -60,8 +31,8 @@ function fetchAndUpdateTasks() {
     xhr.open('GET', '../../controller/taskController.php', true);
 
     xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            try {
+        if(xhr.readyState === 4 && xhr.status === 200) {
+            try{
                 const tasks = JSON.parse(xhr.responseText);
                 tasks.forEach(task => {
                     const cb = document.querySelector(`.task-checkbox[data-taskid="${task.taskID}"]`);
