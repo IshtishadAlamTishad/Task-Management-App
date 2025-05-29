@@ -33,13 +33,11 @@ function authUser($email, $password) {
         exit;
     }
 
-    // Use password_verify to check hashed password
     if (!password_verify($password, $user['password'])) {
         header("Location: ../view/html/loginPage.html?message=" . urlencode("Invalid password"));
         exit;
     }
 
-    // Set session variables
     $_SESSION['status'] = true;
     $_SESSION['userID'] = $user['id'];
     $_SESSION['email'] = $email;
