@@ -1,15 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const data = [
-    { title: "JavaScript Fundamentals", category: "development", startTime: "2025-05-05T09:00", deadline: "2025-05-07T17:00" },
-    { title: "Figma Design Basics", category: "design", startTime: "2025-05-06T10:00", deadline: "2025-05-08T16:30" },
-    { title: "SEO for Beginners", category: "marketing", startTime: "2025-05-05T14:00", deadline: "2025-05-09T11:00" },
-    { title: "React Framework Deep Dive", category: "development", startTime: "2025-05-07T08:30", deadline: "2025-05-10T18:00" },
-    { title: "Color Theory 101", category: "design", startTime: "2025-05-06T13:00", deadline: "2025-05-10T15:00" },
-    { title: "Email Campaign Tips", category: "marketing", startTime: "2025-05-08T09:00", deadline: "2025-05-11T12:00" },
-    { title: "Database Optimization", category: "development", startTime: "2025-05-09T11:00", deadline: "2025-05-12T16:00" },
-    { title: "UX Review Meeting", category: "design", startTime: "2025-05-09T10:00", deadline: "2025-05-09T11:00" },
-    { title: "Social Media Audit", category: "marketing", startTime: "2025-05-10T15:00", deadline: "2025-05-13T15:30" }
-  ];
+  let data = [];
 
   const searchInput = document.getElementById("searchInput");
   const categoryFilter = document.getElementById("categoryFilter");
@@ -26,15 +16,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     filteredData.forEach(item => {
       const start = new Date(item.startTime);
-      const end = new Date(item.deadline);
+      const end = new Date(item.endTime);
 
       const div = document.createElement("div");
       div.classList.add("result-item");
 
       div.innerHTML = `
         <div>
-          <strong>${item.title}</strong><br/>
-          <span class="category">Category: ${item.category}</span><br/>
+          <strong>${item.taskName}</strong><br/>
+          <span class="category">Category: ${item.taskCategory}</span><br/>
           <span class="datetime">Start: ${start.toLocaleString()}</span><br/>
           <span class="datetime">Deadline: ${end.toLocaleString()}</span>
         </div>
@@ -48,19 +38,40 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedCategory = categoryFilter.value;
 
     const filtered = data.filter(item => {
-      const matchesKeyword = item.title.toLowerCase().includes(keyword);
-      const matchesCategory = selectedCategory === "all" || item.category === selectedCategory;
+      const matchesKeyword = item.taskName.toLowerCase().includes(keyword);
+      const matchesCategory = selectedCategory === "all" || item.taskCategory === selectedCategory;
       return matchesKeyword && matchesCategory;
     });
 
     renderResults(filtered);
   }
 
-  renderResults(data);
+  function fetchData() {
+    const xhr = new XMLHttpRequest();
+    xhr.open("GET", "../../controller/viewTaskController.php", true);
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        try {
+          data = JSON.parse(xhr.responseText);
+          renderResults(data);
+        } catch (err) {
+          resultsList.innerHTML = "<p>Error parsing data.</p>";
+        }
+      } else {
+        resultsList.innerHTML = "<p>Error loading data.</p>";
+      }
+    };
+    xhr.send();
+  }
 
   searchButton.addEventListener("click", filterData);
   searchInput.addEventListener("keypress", e => {
-    if (e.key === "Enter") filterData();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      filterData();
+    }
   });
   categoryFilter.addEventListener("change", filterData);
+
+  fetchData();
 });
