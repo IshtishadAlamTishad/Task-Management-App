@@ -16,7 +16,7 @@ session_destroy();
         <div class="navbar">
             <a href="../php/homePage.php">Home</a>
             <a href="../html/aboutUs.html" id="aboutUs">About Us</a>
-            <a href="../html/contactUsPage.html">Contact Us</a>
+            <a href="../php/contactUsPage.php">Contact Us</a>
             <a href="../html/loginPage.html" class="login">Login</a>
             <a href="../html/signupPage.html" class="signup">SignUP</a>
         </div>
