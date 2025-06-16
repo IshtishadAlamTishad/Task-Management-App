@@ -69,7 +69,7 @@ $conn->close();
                   <button onclick="showContent('../html/activityHistoryPage.html')">Activity History</button>
                   <button onclick="showContent('../html/subTaskPage.html')">Subtask</button>
                   <button onclick="showContent('../html/notifications.html')">Notifications</button>
-                  <button onclick="showContent('../html/roleBasePage.html')">Change User roles</button>
+                  <button onclick="showContent('../php/roleBasePage.php')">Change User roles</button>
                   <button onclick="showContent('../html/dueDatePage.html')">Due Dates</button>
                   <button onclick="showContent('../html/calenderView.html')">Calendar View</button>
               </nav>

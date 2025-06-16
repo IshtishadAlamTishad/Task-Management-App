@@ -1,30 +1,24 @@
 <?php
-// Start the session at the very beginning of the PHP file
+
 session_start();
 
-// Initialize variables for message and its type
-$message = '';
-$message_type = ''; // Will be 'error' or 'success'
 
-// Check if there's a message stored in the session from a previous redirect
+$message = '';
+$message_type = ''; 
+
+
 if (isset($_SESSION['login_message'])) {
     $message = $_SESSION['login_message'];
-    // Determine the message type (e.g., 'error' for failed login, 'success' for registration success)
-    // Default to 'error' if type is not explicitly set
     $message_type = isset($_SESSION['message_type']) ? htmlspecialchars($_SESSION['message_type']) : 'error';
 
-    // Clear the session variables immediately after retrieving them
-    // This prevents the message from reappearing on subsequent page loads or refreshes
     unset($_SESSION['login_message']);
     unset($_SESSION['message_type']);
 }
 
-// Retain the email value if it was previously submitted and stored in the session
-// This is crucial for user experience on login failure, so they don't have to re-type their email.
 $retained_email = '';
 if (isset($_SESSION['retained_email'])) {
     $retained_email = htmlspecialchars($_SESSION['retained_email']);
-    unset($_SESSION['retained_email']); // Clear it after retrieving
+    unset($_SESSION['retained_email']); 
 }
 ?>
 <!DOCTYPE html>
@@ -61,8 +55,6 @@ if (isset($_SESSION['retained_email'])) {
 
             <p class="message" id="message">
                 <?php
-                // Display the message if it exists, with its corresponding type class
-                // The 'message' and 'message_type' variables are populated from $_SESSION at the top of the file
                 if (!empty($message)) {
                     echo "<span class='" . $message_type . "'>" . $message . "</span>";
                 }
@@ -71,7 +63,7 @@ if (isset($_SESSION['retained_email'])) {
 
             <div class="links">
                 <a href="../php/forgotPasswordPage.php" target="_self">Forgot Password?</a><br>
-                <a href="../html/signupPage.html">Don't have an account? Sign up</a>
+                <a href="../php/signupPage.php">Don't have an account? Sign up</a>
             </div>
 
         </form>

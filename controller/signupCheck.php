@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 if ($stmt->execute()) {
                     $_SESSION['success'] = "Registration successful. Please log in.";
-                    header("Location: ../view/html/loginPage.html");
+                    header("Location: ../view/php/loginPage.php");
                     exit;
                 } else {
                     echo "Database error: " . $stmt->error;

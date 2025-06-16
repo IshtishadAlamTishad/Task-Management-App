@@ -9,11 +9,24 @@ function login($user){
 
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
-        return $row['id']; 
+        return $row['id'];
     } else {
         return false;
     }
 
+}
+
+function getAllUsers(){
+    $conn = getConnection();
+    $sql = "SELECT id, firstname, lastname, email, role FROM userinfos"; 
+    $result = mysqli_query($conn, $sql);
+    $users = [];
+    if(mysqli_num_rows($result) > 0){
+        while($row = mysqli_fetch_assoc($result)){
+            $users[] = $row;
+        }
+    }
+    return $users;
 }
 
 
@@ -123,6 +136,20 @@ function getUserRoleById($id){
         return false;
     }
 }
+
+function updateUserRoleInDB($userId, $newRole){
+    $conn = getConnection();
+    $userId = mysqli_real_escape_string($conn, $userId);
+    $newRole = mysqli_real_escape_string($conn, $newRole);
+    $sql = "UPDATE userinfos SET role = '$newRole' WHERE id = '$userId'";
+
+    if(mysqli_query($conn, $sql)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 
 function updatePassword($user){
     $conn = getConnection();

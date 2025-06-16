@@ -71,5 +71,5 @@ submitBtn.onclick = function (e) {
 };
 
 cancelBtn.onclick = function () {
-  window.location.href = "../../view/html/loginPage.html";
+  window.location.href = "../../view/php/loginPage.php";
 };

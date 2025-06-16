@@ -93,12 +93,9 @@
                     </div>
                     <p id="msg">
                         <?php
-                        // Display messages (e.g., error messages) redirected from signupCheck.php
                         if (isset($_GET['message'])) {
                             $message = htmlspecialchars($_GET['message']);
-                            // You can add a 'type' GET parameter (e.g., &type=error or &type=success)
-                            // to apply different styling using CSS. Default to 'error' if not specified.
-                            $message_type = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'error';
+                            $message_type = isset($_GET['type']) ? htmlspecialchars($_GET['type']) : 'Error';
                             echo "<span class='" . $message_type . "'>" . $message . "</span>";
                         }
                         ?>
