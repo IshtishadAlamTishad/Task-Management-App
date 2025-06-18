@@ -10,7 +10,7 @@
     <body>
         <form id="sf" method="get" enctype="multipart/form-data">
             <div class="container">
-                <h1>Search & Filter</h1>
+                <h1>Search | Filter</h1>
 
                 <div class="controls">
                     <input type="text" id="searchInput" placeholder="Search by keyword..." />

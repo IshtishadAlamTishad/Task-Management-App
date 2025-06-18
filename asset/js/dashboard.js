@@ -7,14 +7,14 @@ function viewDetails(section) {
   }
   
   function viewAnalytics() {
-    window.location.href = "../../view/html/progressTrack.html"; 
+    window.location.href = "../../view/php/progressTrack.php"; 
   }
 
 
   function viewAllTasks() {
-    console.log('Opening All Tasks List...');
+    window.location.href = "../../view/php/searchFilterPage.php"; 
   }
   
   function viewCalendar() {
-    console.log("Navigating to calendar view...");
+    window.location.href = "../../view/php/calenderView.php"; 
   }

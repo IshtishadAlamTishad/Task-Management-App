@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <span class="category">Category: ${item.taskCategory}</span><br/>
           <span class="datetime">Start: ${start.toLocaleString()}</span><br/>
           <span class="datetime">Deadline: ${end.toLocaleString()}</span>
+          <span class="category">Status: ${item.isDone == "1" || item.isDone == 1 ? "Completed ✅" : "Not Completed ❌"}</span>
         </div>
       `;
       resultsList.appendChild(div);
