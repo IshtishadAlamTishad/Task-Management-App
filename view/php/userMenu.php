@@ -73,7 +73,6 @@ $conn->close();
                 <button onclick="showContent('../php/activityHistoryPage.php')">Activity History</button>
                 <button onclick="showContent('../html/subTaskPage.html')">Subtask</button>
                 <button onclick="showContent('../html/notifications.html')">Notifications</button>
-                <button onclick="showContent('../html/dueDatePage.html')">Due Dates</button>
                 <button onclick="showContent('../php/calenderView.php')">Calendar View</button>
             </nav>
         </aside>
