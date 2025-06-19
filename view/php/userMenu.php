@@ -71,8 +71,6 @@ $conn->close();
                 <button onclick="showContent('../php/progressTrackPage.php')">Progress Tracker</button>
                 <button onclick="showContent('../php/searchFilterPage.php')">Search & Filter</button>
                 <button onclick="showContent('../php/activityHistoryPage.php')">Activity History</button>
-                <button onclick="showContent('../html/subTaskPage.html')">Subtask</button>
-                <button onclick="showContent('../html/notifications.html')">Notifications</button>
                 <button onclick="showContent('../php/calenderView.php')">Calendar View</button>
             </nav>
         </aside>
