@@ -161,4 +161,34 @@ function updatePassword($user){
         return false;
     }
 }
+
+function updateUserRole($userId, $newRole){
+    $conn = getConnection();
+    $sql = "UPDATE userinfos SET role = ? WHERE ID = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "si", $newRole, $userId);
+        $result = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        $result = false;
+    }
+    mysqli_close($conn);
+    return $result;
+}
+
+function deleteUser($userId){
+    $conn = getConnection();
+    $sql = "DELETE FROM userinfos WHERE ID = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    if ($stmt) {
+        mysqli_stmt_bind_param($stmt, "i", $userId);
+        $result = mysqli_stmt_execute($stmt);
+        mysqli_stmt_close($stmt);
+    } else {
+        $result = false;
+    }
+    mysqli_close($conn);
+    return $result;
+}
 ?>

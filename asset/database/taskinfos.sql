@@ -83,3 +83,35 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+-- --------------------------------------------------------
+-- Table structure for table `subtasks`
+--
+CREATE TABLE `subtasks` (
+  `subtaskID` int(11) NOT NULL,
+  `taskID` int(11) NOT NULL,
+  `subtaskName` varchar(100) NOT NULL,
+  `subtaskDesc` varchar(300) DEFAULT NULL,
+  `isDone` tinyint(1) DEFAULT 0,
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Indexes for table `subtasks`
+--
+ALTER TABLE `subtasks`
+  ADD PRIMARY KEY (`subtaskID`),
+  ADD KEY `taskID` (`taskID`);
+
+--
+-- AUTO_INCREMENT for table `subtasks`
+--
+ALTER TABLE `subtasks`
+  MODIFY `subtaskID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for table `subtasks`
+--
+ALTER TABLE `subtasks`
+  ADD CONSTRAINT `subtasks_ibfk_1` FOREIGN KEY (`taskID`) REFERENCES `taskinfos` (`taskID`) ON DELETE CASCADE ON UPDATE CASCADE;

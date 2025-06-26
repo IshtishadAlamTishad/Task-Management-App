@@ -19,7 +19,7 @@ if(empty($_SESSION['userID'])) {
 }
 
 $userID = $_SESSION['userID'];
-$sql = "SELECT taskName, taskCategory, startTime, endTime,isDone FROM taskinfos WHERE ID = ?";
+$sql = "SELECT taskID, taskName, taskDesc, taskCategory, startTime, endTime, isDone FROM taskinfos WHERE ID = ?";
 $stmt = mysqli_prepare($conn, $sql);
 
 $tasks = [];
@@ -31,6 +31,7 @@ if ($stmt) {
 
     if ($result && mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
+            $row['isDone'] = (int)$row['isDone'];
             $tasks[] = $row;
         }
     }
