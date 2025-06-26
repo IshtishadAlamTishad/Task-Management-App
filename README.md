@@ -1,88 +1,84 @@
 # Task Management App
 
-### Overview
-    A simple web application designed to help users manage their tasks efficiently. 
-    This project includes features like task creation, validation and management 
-    built using HTML, CSS, JavaScript and PHP.
+## Overview
+A professional web application for efficient task and subtask management, featuring a robust admin panel. Built with HTML, CSS, JavaScript (AJAX/JSON), and PHP (MySQL), this app supports individual and team productivity with modern UI/UX and secure, role-based access.
 
-### Features
-    Task Creation: Users can add new tasks with title, description, and due date.
-    Task Update/Delete: Tasks can be updated or removed.
-    Form Validation: Client-side and server-side validation for data integrity.
-    Responsive: Optimized for desktop
+## Features
+- **User Features:**
+  - Task creation, editing, and deletion
+  - Subtask management (add, edit, delete, mark as done)
+  - File attachments for tasks
+  - Progress tracking and dashboard
+  - Activity history and search/filter
+  - Profile management
+- **Admin Features:**
+  - Admin dashboard with user and task management
+  - Change user roles (User/Admin)
+  - Delete users and tasks
+  - View activity logs
+  - Secure, role-based access control
+- **General:**
+  - Responsive, modern UI
+  - Client-side and server-side validation
+  - Secure session and input handling
 
-### Technologies Used
-    Frontend:
-    HTML: Structure of the web application.
-    CSS: Styling for the user interface.
-    JavaScript: Validating user inputs and others variable fields.
+## Technologies Used
+- **Frontend:**
+  - HTML5, CSS3 (custom, responsive)
+  - JavaScript (ES6+), AJAX, JSON
+- **Backend:**
+  - PHP 7/8
+  - MySQL/MariaDB
 
-    Backend:
-    PHP : Manages server-side logic,processes form submissions and interacts with the database.
+## Installation
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/yourusername/task-management-app.git
+   ```
+2. **Set up your local server:**
+   - Use XAMPP, WAMP, MAMP, or similar (PHP & MySQL required)
+3. **Move project files:**
+   - Place the project folder in your web server's root directory (e.g., `htdocs` for XAMPP)
+4. **Import the database:**
+   - Use phpMyAdmin or MySQL CLI to import the SQL files in `asset/database/` (`userinfos.sql`, `taskinfos.sql`)
+5. **Start the server:**
+   - Open your browser and go to: `http://localhost/Task%20Management%20App/`
 
-### Installation
+## Usage
+- **Register/Login:** Create an account or log in.
+- **Task Management:** Add, edit, delete tasks and subtasks. Attach files as needed.
+- **Admin Panel:** (Admins only) Access via `view/php/adminPanel.php` for user/task management and logs.
+- **Profile:** Update your profile and avatar.
 
-    Follow these steps to set up the app locally:
+## Project Structure
+```
+Task Management App/
+├── asset/
+│   ├── css/         # Stylesheets
+│   ├── js/          # JavaScript files
+│   ├── database/    # SQL files
+│   ├── imgs/        # Images/icons
+│   └── upload/      # Uploaded files (profile pics, task files)
+├── controller/      # PHP controllers (business logic, AJAX endpoints)
+├── model/           # PHP models (database interaction)
+├── view/
+│   ├── html/        # Static HTML pages
+│   └── php/         # Dynamic PHP views
+├── index.php
+├── README.md
+└── LICENSE
+```
 
-    1. Clone the repository
-    Clone this repository to your local machine:
-    git clone https://github.com/yourusername/task-management-app.git
+## Contributing
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature-branch`
+3. Commit your changes: `git commit -am 'Add new feature'`
+4. Push to the branch: `git push origin feature-branch`
+5. Create a pull request describing your changes
 
-    2. Set up the local development environment
-    Ensure you have a local server running (like XAMPP, WAMP, or MAMP) to handle PHP and MySQL (if required).
+## Authors
+- Mohammed Istishad Alam Tishad (22-46130-1, CSE, FST, AIUB)
+- Rakibul Riyel (22-46138-1, CSE, FST, AIUB)
 
-    3. Move the project files
-    Move the cloned project folder into the web directory of your server setup:
-
-    XAMPP: htdocs
-
-    4. Start the server
-    Launch your local server and open the project in your browser by navigating to:
-
-    http://localhost/task-management-app/
-
-### How to Use
-    Access the Application: Open http://localhost/task-management-app/ in your web browser.
-    Create a Task: Fill out the form with the task title, description, and due date, and click "Submit."
-    View Tasks: Your created tasks will be displayed on the page with options to edit or delete them.
-    Edit or Delete: Modify or remove tasks by clicking the corresponding buttons next to each task.
-
-### Project Structure
-    The following is the directory structure of the project:
-
-    Task-Management-App/
-    ├── asset/
-    │   └── [Static assets such as CSS, JavaScript, and images]
-    │   └── css [contains .css files]
-    │   └── js [contains .js files]
-    │   └── Database [contains DB tables]
-    │   └── imgs [contains images/icons]
-    │   └── upload
-    │       └──profilePic [contains user's profile image]
-    │
-    ├── controller/
-    │   └── [PHP files handling business logic and request processing .php]
-    │
-    ├── model/
-    │   └── [PHP files managing data structures and database interactions .php]
-    │
-    ├── view/
-    │   └── [HTML files rendering the structure .HTML]
-    │   └── [PHP files rendering the user interface .php]
-    │
-    ├── index.php
-    ├── README.md
-    └── LICENSE
-
-### Contributors
-    Mohammed Istishad Alam Tishad,22-46130-1,CSE,FST,AIUB
-    Rakibul Riyel,22-46138-1,CSE,FST,AIUB
-
-### Fork the repository.
-    Create a new branch (git checkout -b feature-branch).
-    Commit your changes (git commit -am 'Add new feature').
-    Push to the branch (git push origin feature-branch).
-    Create a pull request describing your changes.
-
-### License
-    This project is licensed under the GNU General Public License v3.0 –> see the [LICENSE] file for details
+## License
+This project is licensed under the GNU General Public License v3.0. See the [LICENSE](LICENSE) file for details.
